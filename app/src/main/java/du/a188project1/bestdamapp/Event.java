@@ -2,27 +2,27 @@
     Event class with getters and setters
  */
 
-
 package du.a188project1.bestdamapp;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Event {
-    private LocalDate date;
+
+public class Event implements Serializable {
+    private String date;
     private Band performer;
-    private String venue;
+    private Venue venue;
     private int priceRange;
     private String genre;
     private String ticketLink;
-    private byte[] image;
+    private byte[][] images;
 
     // accessor method for date
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
     // mutator method for date
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -37,12 +37,12 @@ public class Event {
     }
 
     // accessor method for venue
-    public String getVenue() {
+    public Venue getVenue() {
         return venue;
     }
 
     // mutator method for venue
-    public void setVenue(String venue) {
+    public void setVenue(Venue venue) {
         this.venue = venue;
     }
 
@@ -77,12 +77,12 @@ public class Event {
     }
 
     // accessor method for image
-    public byte[] getImage() {
-        return image;
+    public byte[][] getImages() {
+        return images;
     }
 
     // mutator method for image
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImages(byte[][] images) {
+        this.images = images;
     }
 }
