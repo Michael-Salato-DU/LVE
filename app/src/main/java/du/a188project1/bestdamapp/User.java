@@ -1,3 +1,7 @@
+/* Johanan Tai
+   User class with getters and setters
+ */
+
 package du.a188project1.bestdamapp;
 
 import java.util.List;

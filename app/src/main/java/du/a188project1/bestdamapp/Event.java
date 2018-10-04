@@ -1,3 +1,8 @@
+/*  Michael Salato
+    Event class with getters and setters
+ */
+
+
 package du.a188project1.bestdamapp;
 
 import java.time.LocalDate;
