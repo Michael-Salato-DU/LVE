@@ -1,6 +1,8 @@
 package du.a188project1.bestdamapp;
 
-public class Band {
+import java.io.Serializable;
+
+public class Band implements Serializable{
     private String name;
     private String genre;
     private String description;

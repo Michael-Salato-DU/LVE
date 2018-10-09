@@ -4,7 +4,9 @@
 
 package du.a188project1.bestdamapp;
 
-public class Venue {
+import java.io.Serializable;
+
+public class Venue implements Serializable{
     private String venueName;
     private String address;
     private Float avgUserRating;
