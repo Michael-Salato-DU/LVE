@@ -12,7 +12,6 @@ public class Event implements Serializable {
     private Band performer;
     private Venue venue;
     private int priceRange;
-    private String genre;
     private String ticketLink;
     private byte[][] images;
 
@@ -56,15 +55,6 @@ public class Event implements Serializable {
         this.priceRange = priceRange;
     }
 
-    // accessor method for genre
-    public String getGenre() {
-        return genre;
-    }
-
-    // mutator method for genre
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 
     // accessor method for ticketLink
     public String getTicketLink() {
@@ -76,12 +66,12 @@ public class Event implements Serializable {
         this.ticketLink = ticketLink;
     }
 
-    // accessor method for image
+    // accessor method for images
     public byte[][] getImages() {
         return images;
     }
 
-    // mutator method for image
+    // mutator method for images
     public void setImages(byte[][] images) {
         this.images = images;
     }
