@@ -4,6 +4,7 @@
 
 package du.a188project1.bestdamapp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -46,7 +47,7 @@ public class User {
         return this.genre_list;
     }
 
-    public void setGenre_list(List<String> genre_list){
+    public void setGenre_list(ArrayList<String> genre_list){
         this.genre_list = genre_list;
     }
 
