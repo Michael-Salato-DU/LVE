@@ -18,18 +18,21 @@ public class GenreSelectionAdapter extends RecyclerView.Adapter<GenreSelectionAd
     private ArrayList<String> genreList;
     private CompoundButton.OnCheckedChangeListener cListener;
 
-    //instantiator
+    //Constructor for the Adapter
     public GenreSelectionAdapter(Context context, ArrayList<String> dataset, CompoundButton.OnCheckedChangeListener listener){
-
         this.context = context;
         this.genreList = dataset;
         this.cListener = listener;
     }
 
+    //Create GenreViewHolder that inherits RecyclerView
     public class GenreViewHolder extends RecyclerView.ViewHolder  {
+
         public CheckBox genreChkBox;
+        //Checkbox listener
         private CompoundButton.OnCheckedChangeListener cListener;
 
+        //Constructor for the GenreViewHolder class
         public GenreViewHolder(View itemView, CompoundButton.OnCheckedChangeListener listener) {
             super(itemView);
             genreChkBox = itemView.findViewById(R.id.genre_type);
@@ -38,11 +41,12 @@ public class GenreSelectionAdapter extends RecyclerView.Adapter<GenreSelectionAd
         }
 
     }
-
+    //utilized abstract method from RecyclerView adapter, just a fill-in to prevent errors
     public int getItemCount(){
         return genreList.size();
     }
 
+    //ViewHolder referencing genre_cell.xml
     public GenreSelectionAdapter.GenreViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View v = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.genre_cell, parent, false);
@@ -50,6 +54,7 @@ public class GenreSelectionAdapter extends RecyclerView.Adapter<GenreSelectionAd
         return vh;
     }
 
+    //Updates ViewHolder with types of genres from array
     @Override
     public void onBindViewHolder(@NonNull GenreViewHolder holder, int position) {
         holder.genreChkBox.setText(genreList.get(position));

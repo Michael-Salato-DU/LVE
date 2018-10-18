@@ -15,12 +15,10 @@ import android.widget.CompoundButton;
 import java.util.ArrayList;
 
 public class GenreSelection extends AppCompatActivity {
-
+    //Declare
     private RecyclerView genreList;
     private RecyclerView.LayoutManager layoutManager;
     private Button genreButton;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +32,7 @@ public class GenreSelection extends AppCompatActivity {
         genreList.setLayoutManager(layoutManager);
         genreButton = (Button) findViewById(R.id.genre_button);
 
+        //Create a list of genres to fill in text in checkboxes
         ArrayList<String> Genres = new ArrayList<String>();
         Genres.add("Blues");
         Genres.add("Country");
@@ -50,7 +49,7 @@ public class GenreSelection extends AppCompatActivity {
         Genres.add("Rap");
         Genres.add("R&B");
 
-
+        //Checkbox listener that looks for change and adds checked checkbox text to selectedGenre list
         CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -65,22 +64,21 @@ public class GenreSelection extends AppCompatActivity {
             }
         };
 
+        //Create adapter that will update adapter dataset with Genres and attach listener to ViewHolder
         final GenreSelectionAdapter adapter = new GenreSelectionAdapter(getBaseContext(), Genres, listener);
         genreList.setAdapter(adapter);
 
-
+        //Button that submits selected genres and switch to MainActivity
         genreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.v("Selected Genre(s): ", selectedGenre.toString());
 
-                //TODO: Use the current user instead of new
+                //TODO: Change to current user when realm is fully implemented
                 User user = new User(); //subject to change: temporary new user; user will be the set user
                 user.setGenre_list(selectedGenre);
 
-                Intent intent = new Intent(getBaseContext(),MainActivity.class);
-                intent.putExtra("selectedGenres", selectedGenre);
-                startActivity(intent);
+                //TODO: Go to Main Activity
             }
         });
     }
