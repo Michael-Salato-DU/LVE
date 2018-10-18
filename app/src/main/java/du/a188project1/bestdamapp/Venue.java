@@ -4,10 +4,11 @@
 
 package du.a188project1.bestdamapp;
 
-public class Venue {
+import java.io.Serializable;
+
+public class Venue implements Serializable{
     private String venueName;
     private String address;
-    private Float avgUserRating;
     private int venueType;
     private boolean older21;
 
@@ -25,14 +26,6 @@ public class Venue {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Float getAvgUserRating() {
-        return avgUserRating;
-    }
-
-    public void setAvgUserRating(Float avgUserRating) {
-        this.avgUserRating = avgUserRating;
     }
 
     //0 = restaurant only

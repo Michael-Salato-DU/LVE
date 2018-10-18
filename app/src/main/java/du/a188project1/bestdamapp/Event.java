@@ -11,10 +11,9 @@ public class Event implements Serializable {
     private String date;
     private Band performer;
     private Venue venue;
-    private int priceRange;
-    private String genre;
+    private int minPrice;
+    private int maxPrice;
     private String ticketLink;
-    private byte[][] images;
 
     // accessor method for date
     public String getDate() {
@@ -46,24 +45,24 @@ public class Event implements Serializable {
         this.venue = venue;
     }
 
-    // accessor method for priceRange
-    public int getPriceRange() {
-        return priceRange;
+    // accessor method for minPrice
+    public int getMinPrice() {
+        return minPrice;
     }
 
-    // mutator method for priceRange
-    public void setPriceRange(int priceRange) {
-        this.priceRange = priceRange;
+    // mutator method for minPrice
+    public void setMinPrice(int minPrice) {
+        this.minPrice = minPrice;
     }
 
-    // accessor method for genre
-    public String getGenre() {
-        return genre;
+    // accessor method for maxPrice
+    public int getMaxPrice() {
+        return maxPrice;
     }
 
-    // mutator method for genre
-    public void setGenre(String genre) {
-        this.genre = genre;
+    // mutator method for maxPrice
+    public void setMaxPrice(int maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
     // accessor method for ticketLink
@@ -74,15 +73,5 @@ public class Event implements Serializable {
     // mutator method for ticketLink
     public void setTicketLink(String ticketLink) {
         this.ticketLink = ticketLink;
-    }
-
-    // accessor method for image
-    public byte[][] getImages() {
-        return images;
-    }
-
-    // mutator method for image
-    public void setImages(byte[][] images) {
-        this.images = images;
     }
 }
