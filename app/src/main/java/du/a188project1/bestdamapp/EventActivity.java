@@ -40,8 +40,17 @@ public class EventActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
             }
 
+<<<<<<< HEAD
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+=======
+        // Set the band name, venue, genre, price range, and band description textViews.
+        bandNameView.setText(event.getPerformer().getName());
+        venueView.setText(event.getVenue().getVenueName());
+        genreView.setText(event.getPerformer().getGenre());
+//        priceView.setText(Integer.toString(event.getPriceRange()));
+        bandDescView.setText(event.getPerformer().getDescription());
+>>>>>>> master
 
             }
 
