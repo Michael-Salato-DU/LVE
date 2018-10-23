@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import io.realm.Realm;
+
 
 public class EventActivity extends AppCompatActivity {
 
@@ -26,6 +28,7 @@ public class EventActivity extends AppCompatActivity {
     private TextView bandDescView;
     private Button followButton;
     private Button buyTicketsButton;
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +44,11 @@ public class EventActivity extends AppCompatActivity {
         bandDescView = (TextView) findViewById(R.id.band_desc_view);
         followButton = (Button) findViewById(R.id.follow_button);
         buyTicketsButton = (Button) findViewById(R.id.buy_tickets_button);
+        realm = Realm.getDefaultInstance();
+        String id = (String) getIntent().getStringExtra("event");
 
         // Get the Event object passed as an intent extra from MainActivity.
-        final Event event = (Event) getIntent().getSerializableExtra("event");
+        Event event = realm.where(Event.class).equalTo("id", id).findFirst();
 
         // Set the band name, venue, genre, price range, and band description textViews.
         bandNameView.setText(event.getPerformer().getName());

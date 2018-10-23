@@ -47,7 +47,7 @@ public class AllEventsFragment extends Fragment {
         Realm realm = Realm.getDefaultInstance();
         final RealmResults<Event> allEventsRealm = realm.where(Event.class).findAll();
         RealmList<Event> allEvents = new RealmList<Event>();
-        allEvents.addAll(allEventsRealm);
+        allEvents.addAll(allEventsRealm.subList(0, allEventsRealm.size()));
         allEventsList = (RecyclerView)view.findViewById(R.id.all_events_list);
 
         layoutManager = new LinearLayoutManager(getContext());
@@ -58,7 +58,7 @@ public class AllEventsFragment extends Fragment {
             public void onClick(View view, int position) {
                 Event event = (Event) allEvents.get(position);
                 Intent intent = new Intent(view.getContext(), EventActivity.class);
-                intent.putExtra("event", (Serializable)event);
+                intent.putExtra("event", event.getId());
                 startActivity(intent);
             }
         };

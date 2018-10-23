@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Realm realm = Realm.getDefaultInstance();
         final RealmResults<Event> events = realm.where(Event.class).findAll();
-        if(events.size()==0) {
+        RealmList<Event> allEvents = new RealmList<Event>();
+        allEvents.addAll(events.subList(0, events.size()));
+        if(allEvents.size()==0) {
             populateEvents();
         }
 
@@ -88,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 event1.setPerformer(CoryOren);
                 event1.setDate("10/30/2018");
                 event1.setVenue(Vaudeville);
+                event1.setId("OrenVaudeville");
                 realm.copyToRealmOrUpdate(event1);
 
                 Event event2 = new Event();
@@ -98,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 event2.setPerformer(BandPerry);
                 event2.setDate("11/3/2018");
                 event2.setVenue(Woolys);
+                event2.setId("PerryWoolys");
                 realm.copyToRealmOrUpdate(event2);
 
                 Event event3 = new Event();
@@ -108,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 event3.setPerformer(TaylorSwift);
                 event3.setDate("10/15/2018");
                 event3.setVenue(SportsPlace);
+                event3.setId("TaylorTest");
                 realm.copyToRealmOrUpdate(event3);
             }
         });
