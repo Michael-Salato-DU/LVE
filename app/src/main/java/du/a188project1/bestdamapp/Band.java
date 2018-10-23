@@ -1,6 +1,7 @@
 package du.a188project1.bestdamapp;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Band implements Serializable{
     private String name;
@@ -8,7 +9,7 @@ public class Band implements Serializable{
     private String description;
     private int user_rating;
     private byte[][] pictures;
-    private String[] reviews;
+    private ArrayList<Review> reviews;
 
     public String getName() {
         return name;
@@ -50,11 +51,11 @@ public class Band implements Serializable{
         this.pictures = pictures;
     }
 
-    public String[] getReviews() {
+    public ArrayList<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(String[] reviews) {
+    public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
     }
 }
