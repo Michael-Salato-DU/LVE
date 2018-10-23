@@ -3,7 +3,7 @@
     <string name="title_activity_login">Welcome to Des Music App!</string>
 
     <!-- Strings related to login -->
-    <string name="title_activity_main">Des Music</string>
+
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -14,10 +14,10 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-<<<<<<< HEAD
+
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_event">EventActivity</string>
-=======
+
     <string name="incorrect_credentials">Incorrect email/password.</string>
 
     <!-- Register -->
@@ -27,5 +27,5 @@
     <string name="account_created">Account Created! Press back to go back to the Login Screen.</string>
     <string name="register_error">Please check for errors.</string>
 
->>>>>>> master
+
 </resources>
