@@ -48,7 +48,6 @@ public class GenreSelection extends AppCompatActivity {
         Genres.add("Rock");
         Genres.add("Rap");
         Genres.add("R&B");
-
         //Checkbox listener that looks for change and adds checked checkbox text to selectedGenre list
         CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
             @Override
