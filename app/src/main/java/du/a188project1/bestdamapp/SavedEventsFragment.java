@@ -1,7 +1,7 @@
 /*
 Tess Julien
 October 8, 2018
-Fragment that will hold a list of suggested events
+Fragment that will hold a list of user's saved events
  */
 package du.a188project1.bestdamapp;
 
@@ -24,13 +24,13 @@ import io.realm.RealmList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SuggestionFragment extends Fragment {
+public class SavedEventsFragment extends Fragment {
 
-    private RecyclerView suggestionList;
+    private RecyclerView savedEventsList;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter suggestionAdapter;
+    private RecyclerView.Adapter eventsAdapter;
 
-    public SuggestionFragment() {
+    public SavedEventsFragment() {
         // Required empty public constructor
     }
 
@@ -39,47 +39,37 @@ public class SuggestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_suggestion, container, false);
+        View view = inflater.inflate(R.layout.fragment_saved_events, container, false);
 
-        RealmList<Event> suggestedEvents = new RealmList<Event>();
-        suggestionList = (RecyclerView)view.findViewById(R.id.suggestion_list);
+        RealmList<Event> savedEvents = new RealmList<Event>();
+        savedEventsList = (RecyclerView)view.findViewById(R.id.saved_events_list);
 
         Event event1 = new Event();
-        Band CoryOren = new Band();
-        Venue Vaudeville = new Venue();
-        Vaudeville.setVenueName("Vaudeville");
-        CoryOren.setName("Cory Oren");
-        event1.setPerformer(CoryOren);
-        event1.setDate("10/30/2018");
-        event1.setVenue(Vaudeville);
-
-        Event event2 = new Event();
         Band BandPerry = new Band();
         Venue Woolys = new Venue();
         BandPerry.setName("The Band Perry");
         Woolys.setVenueName("Woolys");
-        event2.setPerformer(BandPerry);
-        event2.setDate("11/3/2018");
-        event2.setVenue(Woolys);
+        event1.setPerformer(BandPerry);
+        event1.setDate("11/3/2018");
+        event1.setVenue(Woolys);
 
-        suggestedEvents.add(event1);
-        suggestedEvents.add(event2);
+        savedEvents.add(event1);
 
         layoutManager = new LinearLayoutManager(getContext());
-        suggestionList.setLayoutManager(layoutManager);
+        savedEventsList.setLayoutManager(layoutManager);
 
         RecyclerViewClickListener listener = new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Event event = (Event) suggestedEvents.get(position);
+                Event event = (Event) savedEvents.get(position);
                 Intent intent = new Intent(view.getContext(), EventActivity.class);
                 intent.putExtra("event", (Serializable)event);
                 startActivity(intent);
             }
         };
 
-        suggestionAdapter = new EventListAdapter(getContext(), suggestedEvents, listener);
-        suggestionList.setAdapter(suggestionAdapter);
+        eventsAdapter = new EventListAdapter(getContext(), savedEvents, listener);
+        savedEventsList.setAdapter(eventsAdapter);
 
         return view;
     }

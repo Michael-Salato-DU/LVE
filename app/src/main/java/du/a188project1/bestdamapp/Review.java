@@ -1,10 +1,23 @@
 package du.a188project1.bestdamapp;
 
-public class Review {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Review extends RealmObject{
+    @PrimaryKey
+    private String id;
     private User user;
     private String message;
     private float rating;
     private byte[] image;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public User getUser() {
         return user;

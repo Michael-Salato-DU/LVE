@@ -14,10 +14,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Realm realm = Realm.getDefaultInstance();
+        final RealmResults<Event> events = realm.where(Event.class).findAll();
+        if(events.size()==0) {
+            populateEvents();
+        }
+
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -63,4 +75,41 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void populateEvents(){
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Event event1 = new Event();
+                Band CoryOren = new Band();
+                Venue Vaudeville = new Venue();
+                Vaudeville.setVenueName("Vaudeville");
+                CoryOren.setName("Cory Oren");
+                event1.setPerformer(CoryOren);
+                event1.setDate("10/30/2018");
+                event1.setVenue(Vaudeville);
+                realm.copyToRealmOrUpdate(event1);
+
+                Event event2 = new Event();
+                Band BandPerry = new Band();
+                Venue Woolys = new Venue();
+                BandPerry.setName("The Band Perry");
+                Woolys.setVenueName("Woolys");
+                event2.setPerformer(BandPerry);
+                event2.setDate("11/3/2018");
+                event2.setVenue(Woolys);
+                realm.copyToRealmOrUpdate(event2);
+
+                Event event3 = new Event();
+                Band TaylorSwift = new Band();
+                Venue SportsPlace = new Venue();
+                TaylorSwift.setName("Taylor Swift");
+                SportsPlace.setVenueName("Whatever it's called");
+                event3.setPerformer(TaylorSwift);
+                event3.setDate("10/15/2018");
+                event3.setVenue(SportsPlace);
+                realm.copyToRealmOrUpdate(event3);
+            }
+        });
+    }
 }

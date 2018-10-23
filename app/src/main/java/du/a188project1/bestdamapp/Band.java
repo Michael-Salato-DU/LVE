@@ -1,14 +1,19 @@
 package du.a188project1.bestdamapp;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Band implements Serializable{
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.RealmResults;
+
+public class Band extends RealmObject{
     private String name;
     private String genre;
     private String description;
     private int user_rating;
-    private byte[][] pictures;
-    private String[] reviews;
+    private byte[] pictures;
+    private RealmList<Review> reviews;
 
     public String getName() {
         return name;
@@ -42,21 +47,22 @@ public class Band implements Serializable{
         this.user_rating = user_rating;
     }
 
-    public byte[][] getPictures() {
+    public byte[] getPictures() {
         return pictures;
     }
 
-    public void setPictures(byte[][] pictures) {
+    public void setPictures(byte[] pictures) {
         this.pictures = pictures;
     }
 
-    public String[] getReviews() {
+    public RealmList<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(String[] reviews) {
+    public void setReviews(RealmList<Review> reviews) {
         this.reviews = reviews;
     }
+
 }
 
 

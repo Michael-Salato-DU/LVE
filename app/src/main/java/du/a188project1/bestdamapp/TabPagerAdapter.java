@@ -22,7 +22,7 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter{
                 AllEventsFragment tab2 = new AllEventsFragment();
                 return tab2;
             case 2:
-                SavedEvents tab3 = new SavedEvents();
+                SavedEventsFragment tab3 = new SavedEventsFragment();
                 return tab3;
             default:
                 return null;

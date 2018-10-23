@@ -7,11 +7,21 @@ Fragment that will hold a list of all future events
 package du.a188project1.bestdamapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import io.realm.Realm;
+import io.realm.RealmList;
+import io.realm.RealmResults;
 
 
 /**
@@ -19,6 +29,9 @@ import android.view.ViewGroup;
  */
 public class AllEventsFragment extends Fragment {
 
+    private RecyclerView allEventsList;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter eventsAdapter;
 
     public AllEventsFragment() {
         // Required empty public constructor
@@ -30,6 +43,29 @@ public class AllEventsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_events, container, false);
+
+        Realm realm = Realm.getDefaultInstance();
+        final RealmResults<Event> allEventsRealm = realm.where(Event.class).findAll();
+        RealmList<Event> allEvents = new RealmList<Event>();
+        allEvents.addAll(allEventsRealm);
+        allEventsList = (RecyclerView)view.findViewById(R.id.all_events_list);
+
+        layoutManager = new LinearLayoutManager(getContext());
+        allEventsList.setLayoutManager(layoutManager);
+
+        RecyclerViewClickListener listener = new RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Event event = (Event) allEvents.get(position);
+                Intent intent = new Intent(view.getContext(), EventActivity.class);
+                intent.putExtra("event", (Serializable)event);
+                startActivity(intent);
+            }
+        };
+
+        eventsAdapter = new EventListAdapter(getContext(), allEvents, listener);
+        allEventsList.setAdapter(eventsAdapter);
+
         return view;
     }
 
