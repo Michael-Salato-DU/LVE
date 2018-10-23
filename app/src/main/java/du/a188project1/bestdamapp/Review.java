@@ -1,6 +1,8 @@
 package du.a188project1.bestdamapp;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
     private User user;
     private String message;
     private float rating;
