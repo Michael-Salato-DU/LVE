@@ -29,15 +29,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity
             android:name=".EventActivity"
             android:label="@string/title_activity_event"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-=======
         <activity android:name=".RegisterActivity" />
->>>>>>> master
+
     </application>
 
 </manifest>
