@@ -49,7 +49,7 @@ public class EventActivity extends AppCompatActivity {
         bandNameView.setText(event.getPerformer().getName());
         venueView.setText(event.getVenue().getVenueName());
         genreView.setText(event.getPerformer().getGenre());
-        priceView.setText(Integer.toString(event.getPriceRange()));
+//        priceView.setText(Integer.toString(event.getPriceRange()));
         bandDescView.setText(event.getPerformer().getDescription());
 
         // Link to the official website to buy the tickets.
