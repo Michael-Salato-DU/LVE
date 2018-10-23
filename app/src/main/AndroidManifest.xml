@@ -36,7 +36,6 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 =======
-        <activity android:name=".EventActivity" />
         <activity android:name=".RegisterActivity" />
 >>>>>>> master
     </application>
