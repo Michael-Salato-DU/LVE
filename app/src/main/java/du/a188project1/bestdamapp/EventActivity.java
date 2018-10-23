@@ -1,68 +1,67 @@
 /* Michael Salato
-   EventActivity class - ___
+   EventActivity to control tabs related to the event and band.
  */
 
 package du.a188project1.bestdamapp;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 
 public class EventActivity extends AppCompatActivity {
-
-    // Declare class variables
-    // find better names for static xml variables
-    private ImageView imageView; // change name
-    private TextView bandNameView;
-    private TextView venueView;
-    private TextView genreView;
-    private TextView priceView;
-    private TextView bandDescView;
-    private Button followButton;
-    private Button buyTicketsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        // Tie variables to the respective views
-        imageView = (ImageView) findViewById(R.id.image_view); // change name
-        bandNameView = (TextView) findViewById(R.id.band_name_view);
-        venueView = (TextView) findViewById(R.id.venue_view);
-        genreView = (TextView) findViewById(R.id.genre_view);
-        priceView = (TextView) findViewById(R.id.price_view);
-        bandDescView = (TextView) findViewById(R.id.band_desc_view);
-        followButton = (Button) findViewById(R.id.follow_button);
-        buyTicketsButton = (Button) findViewById(R.id.buy_tickets_button);
+        // Set up 3 tab layout
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.addTab(tabLayout.newTab().setText("Event Profile"));
+        tabLayout.addTab(tabLayout.newTab().setText("Band Profile"));
+        tabLayout.addTab(tabLayout.newTab().setText("Reviews"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        // Get the Event object passed as an intent extra from MainActivity.
-        final Event event = (Event) getIntent().getSerializableExtra("event");
+        final ViewPager viewPager = (ViewPager)findViewById(R.id.viewpager);
+        final EventTabPagerAdapter adapter = new EventTabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
 
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+<<<<<<< HEAD
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+=======
         // Set the band name, venue, genre, price range, and band description textViews.
         bandNameView.setText(event.getPerformer().getName());
         venueView.setText(event.getVenue().getVenueName());
         genreView.setText(event.getPerformer().getGenre());
 //        priceView.setText(Integer.toString(event.getPriceRange()));
         bandDescView.setText(event.getPerformer().getDescription());
+>>>>>>> master
 
-        // Link to the official website to buy the tickets.
-        // source to link to a website:
-        // https://stackoverflow.com/questions/5026349/how-to-open-a-website-when-a-button-is-clicked-in-android-application
-        // user: Sampad
-        buyTicketsButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse(event.getTicketLink()));
-                startActivity(intent);
-            } });
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        // Get the Event object passed as an intent extra from MainActivity.
+        final Event event = (Event) getIntent().getSerializableExtra("event");
     }
+
 }
