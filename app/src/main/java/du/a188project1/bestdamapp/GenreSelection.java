@@ -1,21 +1,24 @@
 package du.a188project1.bestdamapp;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
+import io.realm.RealmList;
+
 public class GenreSelection extends AppCompatActivity {
     //Declare
+
+    public User user;
     private RecyclerView genreList;
     private RecyclerView.LayoutManager layoutManager;
     private Button genreButton;
@@ -24,8 +27,7 @@ public class GenreSelection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_genre_selection);
-
-        final ArrayList<String> selectedGenre = new ArrayList<String>();
+        RealmList<String> selectedGenre = new RealmList<String>();
 
         genreList = (RecyclerView) findViewById(R.id.genre_list);
         layoutManager = new LinearLayoutManager(getBaseContext());
@@ -73,11 +75,21 @@ public class GenreSelection extends AppCompatActivity {
             public void onClick(View view) {
                 Log.v("Selected Genre(s): ", selectedGenre.toString());
 
-                //TODO: Change to current user when realm is fully implemented
-                User user = new User(); //subject to change: temporary new user; user will be the set user
-                user.setGenre_list(selectedGenre);
+                Realm realm = Realm.getDefaultInstance();
+                String current_email = getIntent().getStringExtra("current_email");
+                Log.v("Current Email ", current_email);
 
-                //TODO: Go to Main Activity
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        user = realm.where(User.class).equalTo("email",current_email).findFirst();
+                        user.setGenre_list(selectedGenre);
+                        realm.copyToRealmOrUpdate(user);
+                    }
+                });
+
+                Intent main_intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(main_intent);
             }
         });
     }

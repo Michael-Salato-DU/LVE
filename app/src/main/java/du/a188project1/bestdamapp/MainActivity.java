@@ -6,13 +6,9 @@ Landing page of app with three tabs. Selecting a tab opens up a fragment.
 package du.a188project1.bestdamapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         // Coordinator Layout automatically comes with a Floating Action Button. I left the code here in case we want to add it later.
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

@@ -26,6 +26,9 @@
     <string name="prompt_confirm_password">Confirm Password</string>
     <string name="account_created">Account Created! Press back to go back to the Login Screen.</string>
     <string name="register_error">Please check for errors.</string>
+    <string name="Submit">Submit</string>
+    <string name="title_activity_genre">genre</string>
+    <string name="title_activity_Genre_selection">Genre Selection</string>
 
 
 </resources>
