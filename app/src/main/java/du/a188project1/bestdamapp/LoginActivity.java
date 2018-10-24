@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                     User current_user = realm.where(User.class).equalTo("email", email_input_string).findFirst();
 
                     Intent use = new Intent(getBaseContext(), MainActivity.class);
-                    use.putExtra("current_email", current_user.getFirst_name());
+                    use.putExtra("current_email", current_user.getEmail());
                     startActivity(use);
                 }
                 else message.setText(R.string.incorrect_credentials);
