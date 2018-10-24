@@ -12,7 +12,7 @@ public class Band extends RealmObject{
     private String genre;
     private String description;
     private int user_rating;
-    private byte[] pictures;
+    private byte[][] pictures;
     private RealmList<Review> reviews;
 
     public String getName() {
@@ -47,11 +47,11 @@ public class Band extends RealmObject{
         this.user_rating = user_rating;
     }
 
-    public byte[] getPictures() {
+    public byte[][] getPictures() {
         return pictures;
     }
 
-    public void setPictures(byte[] pictures) {
+    public void setPictures(byte[][] pictures) {
         this.pictures = pictures;
     }
     public RealmList<Review> getReviews() {
