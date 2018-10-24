@@ -1,18 +1,15 @@
 package du.a188project1.bestdamapp;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
-import io.realm.RealmResults;
 
 public class Band extends RealmObject{
     private String name;
     private String genre;
     private String description;
     private int user_rating;
-    private byte[][] pictures;
+    //TODO:ERROR
+//    private byte[][] pictures;
     private RealmList<Review> reviews;
 
     public String getName() {
@@ -47,13 +44,14 @@ public class Band extends RealmObject{
         this.user_rating = user_rating;
     }
 
-    public byte[][] getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(byte[][] pictures) {
-        this.pictures = pictures;
-    }
+    //TODO:ERROR
+//    public byte[][] getPictures() {
+//        return pictures;
+//    }
+//
+//    public void setPictures(byte[][] pictures) {
+//        this.pictures = pictures;
+//    }
     public RealmList<Review> getReviews() {
         return reviews;
     }

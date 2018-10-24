@@ -88,7 +88,8 @@ public class ReviewFragment extends Fragment {
         bandReviews.add(review4);
         bandReviews.add(review5);
 
-        band.setReviews(bandReviews);
+        //TODO:ERROR
+//        band.setReviews(bandReviews);
 
         layoutManager = new LinearLayoutManager(getContext());
         reviewList.setLayoutManager(layoutManager);
