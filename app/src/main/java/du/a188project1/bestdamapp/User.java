@@ -5,7 +5,6 @@
 package du.a188project1.bestdamapp;
 
 import java.io.Serializable;
-import java.util.List;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -17,7 +16,7 @@ public class User extends RealmObject{
     private String first_name;
     private String last_name;
     private String password;
-    private RealmList<Genre> genre_list;
+    private RealmList<String> genre_list;
     private RealmList<Event> saved_events;
 
     public String getFirst_name(){
@@ -52,11 +51,11 @@ public class User extends RealmObject{
         this.password = password;
     }
 
-    public RealmList<Genre> getGenre_list(){
+    public RealmList<String> getGenre_list(){
         return this.genre_list;
     }
 
-    public void setGenre_list(RealmList<Genre> genre_list){
+    public void setGenre_list(RealmList<String> genre_list){
         this.genre_list = genre_list;
     }
 
@@ -67,6 +66,5 @@ public class User extends RealmObject{
     public void setSaved_events(RealmList<Event> saved_events){
         this.saved_events = saved_events;
     }
-
 
 }

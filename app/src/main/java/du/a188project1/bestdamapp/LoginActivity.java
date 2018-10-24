@@ -46,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
                     //Since this user is authenticated, we can set this as our current user
                     User current_user = realm.where(User.class).equalTo("email", email_input_string).findFirst();
 
-                    Intent use = new Intent(getBaseContext(), MainActivity.class);
+
+                    Intent use = new Intent(getBaseContext(), GenreSelection.class);
                     use.putExtra("current_email", current_user.getEmail());
                     startActivity(use);
                 }
