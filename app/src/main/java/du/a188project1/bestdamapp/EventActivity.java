@@ -13,7 +13,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import io.realm.Realm;
+
+
 public class EventActivity extends AppCompatActivity {
+
+    // Declare class variables
+    // find better names for static xml variables
+    private ImageView imageView; // change name
+    private TextView bandNameView;
+    private TextView venueView;
+    private TextView genreView;
+    private TextView priceView;
+    private TextView bandDescView;
+    private Button followButton;
+    private Button buyTicketsButton;
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +58,6 @@ public class EventActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
             }
-
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
