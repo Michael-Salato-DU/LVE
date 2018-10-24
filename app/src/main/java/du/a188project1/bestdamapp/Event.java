@@ -6,14 +6,27 @@ package du.a188project1.bestdamapp;
 
 import java.io.Serializable;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-public class Event implements Serializable {
+
+public class Event extends RealmObject {
+    @PrimaryKey
+    private String id;
     private String date;
     private Band performer;
     private Venue venue;
     private int minPrice;
     private int maxPrice;
     private String ticketLink;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     // accessor method for date
     public String getDate() {

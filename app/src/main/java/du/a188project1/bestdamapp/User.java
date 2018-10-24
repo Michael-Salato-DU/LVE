@@ -10,15 +10,14 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class User extends RealmObject implements Serializable {
+public class User extends RealmObject{
     @PrimaryKey
-    private String email;
+    private String email;  
     private String first_name;
     private String last_name;
     private String password;
     private RealmList<String> genre_list;
-
-//    private List<Event> saved_events;
+    private RealmList<Event> saved_events;
 
     public String getFirst_name(){
         return this.first_name;
@@ -47,7 +46,7 @@ public class User extends RealmObject implements Serializable {
     public String getPassword() {
         return password;
     }
-
+  
     public void setPassword(String password) {
         this.password = password;
     }
@@ -59,14 +58,13 @@ public class User extends RealmObject implements Serializable {
     public void setGenre_list(RealmList<String> genre_list){
         this.genre_list = genre_list;
     }
-//
-//    public List<Event> getSaved_events(){
-//        return this.saved_events;
-//    }
-//
-//    public void setSaved_events(List<Event> saved_events){
-//        this.saved_events = saved_events;
-//    }
 
+    public RealmList<Event> getSaved_events(){
+        return this.saved_events;
+    }
+
+    public void setSaved_events(RealmList<Event> saved_events){
+        this.saved_events = saved_events;
+    }
 
 }

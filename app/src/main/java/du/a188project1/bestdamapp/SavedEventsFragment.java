@@ -1,9 +1,8 @@
 /*
 Tess Julien
 October 8, 2018
-Fragment that will hold a list of all future events
+Fragment that will hold a list of user's saved events
  */
-
 package du.a188project1.bestdamapp;
 
 
@@ -19,21 +18,19 @@ import android.view.ViewGroup;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmResults;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AllEventsFragment extends Fragment {
+public class SavedEventsFragment extends Fragment {
 
-    private RecyclerView allEventsList;
+    private RecyclerView savedEventsList;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter eventsAdapter;
 
-    public AllEventsFragment() {
+    public SavedEventsFragment() {
         // Required empty public constructor
     }
 
@@ -42,29 +39,37 @@ public class AllEventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_all_events, container, false);
+        View view = inflater.inflate(R.layout.fragment_saved_events, container, false);
 
-        Realm realm = Realm.getDefaultInstance();
-        final RealmResults<Event> allEventsRealm = realm.where(Event.class).findAll();
-        RealmList<Event> allEvents = new RealmList<Event>();
-        allEvents.addAll(allEventsRealm.subList(0, allEventsRealm.size()));
-        allEventsList = (RecyclerView)view.findViewById(R.id.all_events_list);
+        RealmList<Event> savedEvents = new RealmList<Event>();
+        savedEventsList = (RecyclerView)view.findViewById(R.id.saved_events_list);
+
+        Event event1 = new Event();
+        Band BandPerry = new Band();
+        Venue Woolys = new Venue();
+        BandPerry.setName("The Band Perry");
+        Woolys.setVenueName("Woolys");
+        event1.setPerformer(BandPerry);
+        event1.setDate("11/3/2018");
+        event1.setVenue(Woolys);
+
+        savedEvents.add(event1);
 
         layoutManager = new LinearLayoutManager(getContext());
-        allEventsList.setLayoutManager(layoutManager);
+        savedEventsList.setLayoutManager(layoutManager);
 
         RecyclerViewClickListener listener = new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Event event = (Event) allEvents.get(position);
+                Event event = (Event) savedEvents.get(position);
                 Intent intent = new Intent(view.getContext(), EventActivity.class);
-                intent.putExtra("event", event.getId());
+                intent.putExtra("event", (Serializable)event);
                 startActivity(intent);
             }
         };
 
-        eventsAdapter = new EventListAdapter(getContext(), allEvents, listener);
-        allEventsList.setAdapter(eventsAdapter);
+        eventsAdapter = new EventListAdapter(getContext(), savedEvents, listener);
+        savedEventsList.setAdapter(eventsAdapter);
 
         return view;
     }

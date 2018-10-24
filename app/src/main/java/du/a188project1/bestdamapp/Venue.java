@@ -6,7 +6,11 @@ package du.a188project1.bestdamapp;
 
 import java.io.Serializable;
 
-public class Venue implements Serializable{
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Venue extends RealmObject{
+    @PrimaryKey
     private String venueName;
     private String address;
     private int venueType;
