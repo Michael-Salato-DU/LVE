@@ -4,6 +4,7 @@
 
 package du.a188project1.bestdamapp;
 
+import java.io.Serializable;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -11,10 +12,10 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class User extends RealmObject{
+    @PrimaryKey
+    private String email;  
     private String first_name;
     private String last_name;
-    @PrimaryKey
-    private String email;
     private String password;
     private RealmList<Genre> genre_list;
     private RealmList<Event> saved_events;
@@ -43,6 +44,10 @@ public class User extends RealmObject{
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+  
     public void setPassword(String password) {
         this.password = password;
     }
@@ -62,5 +67,6 @@ public class User extends RealmObject{
     public void setSaved_events(RealmList<Event> saved_events){
         this.saved_events = saved_events;
     }
+
 
 }

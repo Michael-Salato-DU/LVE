@@ -54,7 +54,6 @@ public class Band extends RealmObject{
     public void setPictures(byte[] pictures) {
         this.pictures = pictures;
     }
-
     public RealmList<Review> getReviews() {
         return reviews;
     }
