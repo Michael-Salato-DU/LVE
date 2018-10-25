@@ -47,12 +47,15 @@ public class SuggestionFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         suggestionList.setLayoutManager(layoutManager);
 
+        final MainActivity mainActivity = (MainActivity) this.getActivity();
+
         RecyclerViewClickListener listener = new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Event event = (Event) suggestedEvents.get(position);
                 Intent intent = new Intent(view.getContext(), EventActivity.class);
                 intent.putExtra("event", event.getId());
+                intent.putExtra("current_email", mainActivity.user.getEmail());
                 startActivity(intent);
             }
         };

@@ -89,6 +89,7 @@ public class GenreSelection extends AppCompatActivity {
                 });
 
                 Intent main_intent = new Intent(getBaseContext(), MainActivity.class);
+                main_intent.putExtra("current_email", user.getEmail());
                 startActivity(main_intent);
             }
         });
