@@ -44,27 +44,6 @@ public class SuggestionFragment extends Fragment {
         RealmList<Event> suggestedEvents = new RealmList<Event>();
         suggestionList = (RecyclerView)view.findViewById(R.id.suggestion_list);
 
-        Event event1 = new Event();
-        Band CoryOren = new Band();
-        Venue Vaudeville = new Venue();
-        Vaudeville.setVenueName("Vaudeville");
-        CoryOren.setName("Cory Oren");
-        event1.setPerformer(CoryOren);
-        event1.setDate("10/30/2018");
-        event1.setVenue(Vaudeville);
-
-        Event event2 = new Event();
-        Band BandPerry = new Band();
-        Venue Woolys = new Venue();
-        BandPerry.setName("The Band Perry");
-        Woolys.setVenueName("Woolys");
-        event2.setPerformer(BandPerry);
-        event2.setDate("11/3/2018");
-        event2.setVenue(Woolys);
-
-        suggestedEvents.add(event1);
-        suggestedEvents.add(event2);
-
         layoutManager = new LinearLayoutManager(getContext());
         suggestionList.setLayoutManager(layoutManager);
 
@@ -73,7 +52,7 @@ public class SuggestionFragment extends Fragment {
             public void onClick(View view, int position) {
                 Event event = (Event) suggestedEvents.get(position);
                 Intent intent = new Intent(view.getContext(), EventActivity.class);
-                intent.putExtra("event", (Serializable)event);
+                intent.putExtra("event", event.getId());
                 startActivity(intent);
             }
         };

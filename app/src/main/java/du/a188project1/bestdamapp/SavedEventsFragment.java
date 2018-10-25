@@ -43,17 +43,17 @@ public class SavedEventsFragment extends Fragment {
 
         RealmList<Event> savedEvents = new RealmList<Event>();
         savedEventsList = (RecyclerView)view.findViewById(R.id.saved_events_list);
-
-        Event event1 = new Event();
-        Band BandPerry = new Band();
-        Venue Woolys = new Venue();
-        BandPerry.setName("The Band Perry");
-        Woolys.setVenueName("Woolys");
-        event1.setPerformer(BandPerry);
-        event1.setDate("11/3/2018");
-        event1.setVenue(Woolys);
-
-        savedEvents.add(event1);
+//
+//        Event event1 = new Event();
+//        Band BandPerry = new Band();
+//        Venue Woolys = new Venue();
+//        BandPerry.setName("The Band Perry");
+//        Woolys.setVenueName("Woolys");
+//        event1.setPerformer(BandPerry);
+//        event1.setDate("11/3/2018");
+//        event1.setVenue(Woolys);
+//
+//        savedEvents.add(event1);
 
         layoutManager = new LinearLayoutManager(getContext());
         savedEventsList.setLayoutManager(layoutManager);
@@ -63,7 +63,7 @@ public class SavedEventsFragment extends Fragment {
             public void onClick(View view, int position) {
                 Event event = (Event) savedEvents.get(position);
                 Intent intent = new Intent(view.getContext(), EventActivity.class);
-                intent.putExtra("event", (Serializable)event);
+                intent.putExtra("event", event.getId());
                 startActivity(intent);
             }
         };
