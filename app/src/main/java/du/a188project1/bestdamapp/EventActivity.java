@@ -22,18 +22,6 @@ import io.realm.Realm;
 
 public class EventActivity extends AppCompatActivity {
 
-    // Declare class variables
-    // find better names for static xml variables
-    private ImageView imageView; // change name
-    private TextView bandNameView;
-    private TextView venueView;
-    private TextView genreView;
-    private TextView priceView;
-    private TextView bandDescView;
-    private Button followButton;
-    private Button buyTicketsButton;
-    private Realm realm;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +60,9 @@ public class EventActivity extends AppCompatActivity {
 
         // Get the Event object passed as an intent extra from MainActivity.
         final Event event = (Event) getIntent().getSerializableExtra("event");
+//        Realm realm = Realm.getDefaultInstance();
+//        String username = (String) getIntent().getStringExtra("username");
+//        user = realm.where(User.class).equalTo("username", username).findFirst();
     }
 
 }
