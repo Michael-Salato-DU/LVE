@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import io.realm.RealmList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,31 +43,9 @@ public class ReviewFragment extends Fragment {
         bandNameView = (TextView) view.findViewById(R.id.band_name_view);
         bandNameView.setText("Justin Bieber and Friends");
 
-//        ArrayList<Band> bandReviews = new ArrayList<Band>();
         Band band = new Band();
-        ArrayList<Review> bandReviews = new ArrayList<Review>();
+        RealmList<Review> bandReviews = new RealmList<Review>();
         reviewList = (RecyclerView)view.findViewById(R.id.review_list);
-
-//        Band band1 = new Band();
-//        band1.setReviews(new Review[]{"Amazing!"});
-//
-//        Band band2 = new Band();
-//        band2.setReviews(new String[]{"So energetic!"});
-//
-//        Band band3 = new Band();
-//        band3.setReviews(new String[]{"Meh."});
-//
-//        Band band4 = new Band();
-//        band4.setReviews(new String[]{"I liked it."});
-//
-//        Band band5 = new Band();
-//        band5.setReviews(new String[]{"It was aight."});
-//
-//        bandReviews.add(band1);
-//        bandReviews.add(band2);
-//        bandReviews.add(band3);
-//        bandReviews.add(band4);
-//        bandReviews.add(band5);
 
         Review review1 = new Review();
         review1.setMessage("Amazing!");
@@ -89,7 +69,7 @@ public class ReviewFragment extends Fragment {
         bandReviews.add(review5);
 
         //TODO:ERROR
-//        band.setReviews(bandReviews);
+        band.setReviews(bandReviews);
 
         layoutManager = new LinearLayoutManager(getContext());
         reviewList.setLayoutManager(layoutManager);
