@@ -22,8 +22,14 @@
         </activity>
 
         <activity
+            android:name=".RegisterActivity"
+            android:label="@string/register_title"
+            android:theme="@style/BestDamTheme"
+            />
+
+        <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/BestDamTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +39,8 @@
 
         <activity
             android:name=".GenreSelection"
-            android:label="@string/title_activity_Genre_selection">
+            android:label="@string/title_activity_Genre_selection"
+            android:theme="@style/BestDamTheme">
             <intent-filter>
                 <action android:name="android.intent.action.genre" />
 
@@ -46,9 +53,10 @@
         <activity
             android:name=".EventActivity"
             android:label="@string/title_activity_event"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/BestDamThemeNoToolbar">
         </activity>
-        <activity android:name=".RegisterActivity" />
+
+
 
     </application>
 
