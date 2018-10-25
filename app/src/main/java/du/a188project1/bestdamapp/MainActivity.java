@@ -16,18 +16,20 @@ import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
+    public User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Realm realm = Realm.getDefaultInstance();
+        String current_email = getIntent().getStringExtra("current_email");
+        user = realm.where(User.class).equalTo("email",current_email).findFirst();
+
         final RealmResults<Event> events = realm.where(Event.class).findAll();
         RealmList<Event> allEvents = new RealmList<Event>();
         allEvents.addAll(events.subList(0, events.size()));
         if(allEvents.size()==0) {
             populateEvents();
         }
-
-
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -84,32 +86,41 @@ public class MainActivity extends AppCompatActivity {
                 Venue Vaudeville = new Venue();
                 Vaudeville.setVenueName("Vaudeville");
                 CoryOren.setName("Cory Oren");
+                CoryOren.setGenre("Pop");
                 event1.setPerformer(CoryOren);
                 event1.setDate("10/30/2018");
                 event1.setVenue(Vaudeville);
                 event1.setId("OrenVaudeville");
+                event1.setMinPrice(25);
+                event1.setTicketLink("https://www.amazon.com/");
                 realm.copyToRealmOrUpdate(event1);
 
                 Event event2 = new Event();
                 Band BandPerry = new Band();
                 Venue Woolys = new Venue();
                 BandPerry.setName("The Band Perry");
+                BandPerry.setGenre("Jazz");
                 Woolys.setVenueName("Woolys");
                 event2.setPerformer(BandPerry);
                 event2.setDate("11/3/2018");
                 event2.setVenue(Woolys);
                 event2.setId("PerryWoolys");
+                event2.setMinPrice(30);
+                event2.setTicketLink("https://www.amazon.com/");
                 realm.copyToRealmOrUpdate(event2);
 
                 Event event3 = new Event();
                 Band TaylorSwift = new Band();
                 Venue SportsPlace = new Venue();
                 TaylorSwift.setName("Taylor Swift");
+                TaylorSwift.setGenre("Indie");
                 SportsPlace.setVenueName("Whatever it's called");
                 event3.setPerformer(TaylorSwift);
                 event3.setDate("10/15/2018");
                 event3.setVenue(SportsPlace);
                 event3.setId("TaylorTest");
+                event3.setMinPrice(80);
+                event3.setTicketLink("https://www.amazon.com/");
                 realm.copyToRealmOrUpdate(event3);
             }
         });

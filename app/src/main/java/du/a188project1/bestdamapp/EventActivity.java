@@ -22,6 +22,9 @@ import io.realm.Realm;
 
 public class EventActivity extends AppCompatActivity {
 
+    public User user;
+    public Event event;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +61,12 @@ public class EventActivity extends AppCompatActivity {
             }
         });
 
-        // Get the Event object passed as an intent extra from MainActivity.
-        final Event event = (Event) getIntent().getSerializableExtra("event");
-//        Realm realm = Realm.getDefaultInstance();
-//        String username = (String) getIntent().getStringExtra("username");
-//        user = realm.where(User.class).equalTo("username", username).findFirst();
-    }
+        Realm realm = Realm.getDefaultInstance();
+        String currentEmail = (String) getIntent().getStringExtra("current_email");
+        user = realm.where(User.class).equalTo("email", currentEmail).findFirst();
+
+        String eventID = (String) getIntent().getStringExtra("event");
+        event = realm.where(Event.class).equalTo("id", eventID).findFirst();
+}
 
 }

@@ -5,6 +5,8 @@
 package du.a188project1.bestdamapp;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -49,24 +51,26 @@ public class EventProfileFragment extends Fragment {
         followButton = (Button) view.findViewById(R.id.follow_button);
         buyTicketsButton = (Button) view.findViewById(R.id.buy_tickets_button);
 
-                // Set the band name, venue, genre, price range, and band description textViews.
-//        bandNameView.setText(event.getPerformer().getName());
-//        venueView.setText(event.getVenue().getVenueName());
-//        genreView.setText(event.getPerformer().getGenre());
-//        priceView.setText(Integer.toString(event.getMinPrice()));
+        final EventActivity eventActivity = (EventActivity) this.getActivity();
+
+        // Set the band name, venue, genre, price range, and band description textViews.
+        bandNameView.setText(eventActivity.event.getPerformer().getName());
+        venueView.setText(eventActivity.event.getVenue().getVenueName());
+        genreView.setText(eventActivity.event.getPerformer().getGenre());
+        priceView.setText(Integer.toString(eventActivity.event.getMinPrice()));
 
         // Link to the official website to buy the tickets.
         // source to link to a website:
         // https://stackoverflow.com/questions/5026349/how-to-open-a-website-when-a-button-is-clicked-in-android-application
         // user: Sampad
-//        buyTicketsButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setAction(Intent.ACTION_VIEW);
-//                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-//                intent.setData(Uri.parse(event.getTicketLink()));
-//                startActivity(intent);
-//            } });
+        buyTicketsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse(eventActivity.event.getTicketLink()));
+                startActivity(intent);
+            } });
 
         //follow button adds event to user's saved events list
 //        followButton.setOnClickListener(new View.OnClickListener() {
