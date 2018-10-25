@@ -16,6 +16,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import io.realm.Realm;
+import io.realm.RealmList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +33,7 @@ public class EventProfileFragment extends Fragment {
     private TextView priceView;
     private Button followButton;
     private Button buyTicketsButton;
+    private Realm realm;
 
     public EventProfileFragment() {
         // Required empty public constructor
@@ -50,6 +54,8 @@ public class EventProfileFragment extends Fragment {
         priceView = (TextView) view.findViewById(R.id.price_view);
         followButton = (Button) view.findViewById(R.id.follow_button);
         buyTicketsButton = (Button) view.findViewById(R.id.buy_tickets_button);
+
+        realm = Realm.getDefaultInstance();
 
         final EventActivity eventActivity = (EventActivity) this.getActivity();
 
@@ -73,12 +79,21 @@ public class EventProfileFragment extends Fragment {
             } });
 
         //follow button adds event to user's saved events list
-//        followButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        followButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                            RealmList<Event> updatedList = eventActivity.user.getSaved_events();
+                            updatedList.add(eventActivity.event);
+                            eventActivity.user.setSaved_events(updatedList);
+                            realm.copyToRealmOrUpdate(eventActivity.user);
+                    }
+                });
+
+            }
+        });
 
 
         return view;
