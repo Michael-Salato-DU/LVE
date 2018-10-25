@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import io.realm.Realm;
 import io.realm.RealmList;
 
 
@@ -41,25 +42,29 @@ public class SavedEventsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_saved_events, container, false);
 
-        RealmList<Event> savedEvents = new RealmList<Event>();
+        final MainActivity mainActivity = (MainActivity) this.getActivity();
+
+        RealmList<Event> savedEvents = mainActivity.user.getSaved_events();
         savedEventsList = (RecyclerView)view.findViewById(R.id.saved_events_list);
-//
-//        Event event1 = new Event();
-//        Band BandPerry = new Band();
-//        Venue Woolys = new Venue();
-//        BandPerry.setName("The Band Perry");
-//        Woolys.setVenueName("Woolys");
-//        event1.setPerformer(BandPerry);
-//        event1.setDate("11/3/2018");
-//        event1.setVenue(Woolys);
-//
-//        savedEvents.add(event1);
 
         layoutManager = new LinearLayoutManager(getContext());
         savedEventsList.setLayoutManager(layoutManager);
+        refreshList();
 
+        return view;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        refreshList();
+    }
+
+    private void refreshList(){
+        Realm realm = Realm.getDefaultInstance();
+        MainActivity activity = (MainActivity) this.getActivity();
+        final RealmList<Event> savedEvents = activity.user.getSaved_events();
         final MainActivity mainActivity = (MainActivity) this.getActivity();
-
         RecyclerViewClickListener listener = new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -70,11 +75,8 @@ public class SavedEventsFragment extends Fragment {
                 startActivity(intent);
             }
         };
-
         eventsAdapter = new EventListAdapter(getContext(), savedEvents, listener);
         savedEventsList.setAdapter(eventsAdapter);
-
-        return view;
     }
 
 }
