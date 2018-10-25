@@ -68,6 +68,14 @@ public class EventProfileFragment extends Fragment {
 //                startActivity(intent);
 //            } });
 
+        //follow button adds event to user's saved events list
+//        followButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+
 
         return view;
     }
