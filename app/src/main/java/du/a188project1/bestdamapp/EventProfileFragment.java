@@ -47,7 +47,7 @@ public class EventProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_event_profile, container, false);
 
         // Tie variables to the respective views
-        imageView = (ImageView) view.findViewById(R.id.band_images_view);
+        imageView = (ImageView) view.findViewById(R.id.venue_images_view);
         bandNameView = (TextView) view.findViewById(R.id.band_name_view);
         venueView = (TextView) view.findViewById(R.id.venue_view);
         genreView = (TextView) view.findViewById(R.id.genre_view);
@@ -59,7 +59,7 @@ public class EventProfileFragment extends Fragment {
 
         final EventActivity eventActivity = (EventActivity) this.getActivity();
 
-        // Set the band name, venue, genre, price range, and band description textViews.
+        // Set the band name, venue, genre, and price range textViews.
         bandNameView.setText(eventActivity.event.getPerformer().getName());
         venueView.setText(eventActivity.event.getVenue().getVenueName());
         genreView.setText(eventActivity.event.getPerformer().getGenre());
