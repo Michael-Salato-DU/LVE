@@ -81,12 +81,44 @@ public class MainActivity extends AppCompatActivity {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
+                // Create a list of reviews to use for each performer.
+                RealmList<Review> bandReviews = new RealmList<Review>();
+
+                Review review1 = new Review();
+                review1.setId("review1");
+                review1.setMessage("Amazing!");
+
+                Review review2 = new Review();
+                review2.setId("review2");
+                review2.setMessage("So energetic!");
+
+                Review review3 = new Review();
+                review3.setId("review3");
+                review3.setMessage("Meh.");
+
+                Review review4 = new Review();
+                review4.setId("review4");
+                review4.setMessage("I liked it.");
+
+                Review review5 = new Review();
+                review5.setId("review5");
+                review5.setMessage("It was aight.");
+
+                bandReviews.add(review1);
+                bandReviews.add(review2);
+                bandReviews.add(review3);
+                bandReviews.add(review4);
+                bandReviews.add(review5);
+
                 Event event1 = new Event();
                 Band CoryOren = new Band();
                 Venue Vaudeville = new Venue();
                 Vaudeville.setVenueName("Vaudeville");
                 CoryOren.setName("Cory Oren");
                 CoryOren.setGenre("Pop");
+                CoryOren.setUser_rating(3);
+                CoryOren.setDescription("Cory is a singer who sings.");
+                CoryOren.setReviews(bandReviews);
                 event1.setPerformer(CoryOren);
                 event1.setDate("10/30/2018");
                 event1.setVenue(Vaudeville);
@@ -100,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
                 Venue Woolys = new Venue();
                 BandPerry.setName("The Band Perry");
                 BandPerry.setGenre("Jazz");
+                BandPerry.setUser_rating(4);
+                BandPerry.setDescription("Perry is a band that plays together.");
+                BandPerry.setReviews(bandReviews);
                 Woolys.setVenueName("Woolys");
                 event2.setPerformer(BandPerry);
                 event2.setDate("11/3/2018");
@@ -114,6 +149,9 @@ public class MainActivity extends AppCompatActivity {
                 Venue SportsPlace = new Venue();
                 TaylorSwift.setName("Taylor Swift");
                 TaylorSwift.setGenre("Indie");
+                TaylorSwift.setUser_rating(5);
+                TaylorSwift.setDescription("T-Swift is the best!");
+                TaylorSwift.setReviews(bandReviews);
                 SportsPlace.setVenueName("Whatever it's called");
                 event3.setPerformer(TaylorSwift);
                 event3.setDate("10/15/2018");

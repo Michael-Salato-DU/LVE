@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class ReviewFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter reviewAdapter;
     private TextView bandNameView;
+    private Button writeReviewButton;
 
     public ReviewFragment() {
         // Required empty public constructor
@@ -40,41 +42,47 @@ public class ReviewFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_review, container, false);
 
+        // Tie variables to the respective views
         bandNameView = (TextView) view.findViewById(R.id.band_name_view);
-        bandNameView.setText("Justin Bieber and Friends");
+        writeReviewButton = (Button) view.findViewById(R.id.write_review_button);
 
-        Band band = new Band();
-        RealmList<Review> bandReviews = new RealmList<Review>();
+        final EventActivity eventActivity = (EventActivity) this.getActivity();
+
+        // Set the band name
+        bandNameView.setText(eventActivity.event.getPerformer().getName());
+
+//        Band band = new Band();
+//        RealmList<Review> bandReviews = new RealmList<Review>();
         reviewList = (RecyclerView)view.findViewById(R.id.review_list);
 
-        Review review1 = new Review();
-        review1.setMessage("Amazing!");
-
-        Review review2 = new Review();
-        review2.setMessage("So energetic!");
-
-        Review review3 = new Review();
-        review3.setMessage("Meh.");
-
-        Review review4 = new Review();
-        review4.setMessage("I liked it.");
-
-        Review review5 = new Review();
-        review5.setMessage("It was aight.");
-
-        bandReviews.add(review1);
-        bandReviews.add(review2);
-        bandReviews.add(review3);
-        bandReviews.add(review4);
-        bandReviews.add(review5);
-
-        //TODO:ERROR
-        band.setReviews(bandReviews);
+//        Review review1 = new Review();
+//        review1.setMessage("Amazing!");
+//
+//        Review review2 = new Review();
+//        review2.setMessage("So energetic!");
+//
+//        Review review3 = new Review();
+//        review3.setMessage("Meh.");
+//
+//        Review review4 = new Review();
+//        review4.setMessage("I liked it.");
+//
+//        Review review5 = new Review();
+//        review5.setMessage("It was aight.");
+//
+//        bandReviews.add(review1);
+//        bandReviews.add(review2);
+//        bandReviews.add(review3);
+//        bandReviews.add(review4);
+//        bandReviews.add(review5);
+//
+//        band.setReviews(bandReviews);
 
         layoutManager = new LinearLayoutManager(getContext());
         reviewList.setLayoutManager(layoutManager);
 
-        reviewAdapter = new ReviewAdapter(getContext(), band);
+        reviewAdapter = new ReviewAdapter(getContext(), eventActivity.event.getPerformer());
+//        reviewAdapter = new ReviewAdapter(getContext(), band);
         reviewList.setAdapter(reviewAdapter);
 
         return view;
