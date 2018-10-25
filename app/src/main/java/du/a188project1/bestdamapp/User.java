@@ -67,4 +67,8 @@ public class User extends RealmObject{
         this.saved_events = saved_events;
     }
 
+    public void addEvent(Event event) {
+        saved_events.add(event);
+    }
+
 }
