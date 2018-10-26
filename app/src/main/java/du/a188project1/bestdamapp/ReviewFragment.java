@@ -51,38 +51,12 @@ public class ReviewFragment extends Fragment {
         // Set the band name
         bandNameView.setText(eventActivity.event.getPerformer().getName());
 
-//        Band band = new Band();
-//        RealmList<Review> bandReviews = new RealmList<Review>();
         reviewList = (RecyclerView)view.findViewById(R.id.review_list);
-
-//        Review review1 = new Review();
-//        review1.setMessage("Amazing!");
-//
-//        Review review2 = new Review();
-//        review2.setMessage("So energetic!");
-//
-//        Review review3 = new Review();
-//        review3.setMessage("Meh.");
-//
-//        Review review4 = new Review();
-//        review4.setMessage("I liked it.");
-//
-//        Review review5 = new Review();
-//        review5.setMessage("It was aight.");
-//
-//        bandReviews.add(review1);
-//        bandReviews.add(review2);
-//        bandReviews.add(review3);
-//        bandReviews.add(review4);
-//        bandReviews.add(review5);
-//
-//        band.setReviews(bandReviews);
 
         layoutManager = new LinearLayoutManager(getContext());
         reviewList.setLayoutManager(layoutManager);
 
         reviewAdapter = new ReviewAdapter(getContext(), eventActivity.event.getPerformer());
-//        reviewAdapter = new ReviewAdapter(getContext(), band);
         reviewList.setAdapter(reviewAdapter);
 
         return view;
