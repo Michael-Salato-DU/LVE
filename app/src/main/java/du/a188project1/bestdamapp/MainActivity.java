@@ -5,10 +5,14 @@ Landing page of app with three tabs. Selecting a tab opens up a fragment.
  */
 package du.a188project1.bestdamapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+
+import java.io.ByteArrayOutputStream;
 
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -81,16 +85,19 @@ public class MainActivity extends AppCompatActivity {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                // Create a list of reviews to use for each performer.
+                                // Create a list of reviews to use for each performer.
                 RealmList<Review> bandReviews = new RealmList<Review>();
 
                 Review review1 = new Review();
                 review1.setId("review1");
-                review1.setMessage("Amazing!");
+                review1.setMessage("I don't know how else to put it. This performance" +
+                        " was simply amazing!");
+                review1.setImage(getBitMapData(R.drawable.review_image0));
 
                 Review review2 = new Review();
                 review2.setId("review2");
                 review2.setMessage("So energetic!");
+                review2.setImage(getBitMapData(R.drawable.review_image1));
 
                 Review review3 = new Review();
                 review3.setId("review3");
@@ -110,6 +117,12 @@ public class MainActivity extends AppCompatActivity {
                 bandReviews.add(review4);
                 bandReviews.add(review5);
 
+                // Create a list of Images to use for each performer.
+                // Will clear this list after setting it for each performer.
+                RealmList<Image> bandImages = new RealmList<Image>();
+
+                // Create events and populate them with data
+                // event 1
                 Event event1 = new Event();
                 Band CoryOren = new Band();
                 Venue Vaudeville = new Venue();
@@ -119,6 +132,15 @@ public class MainActivity extends AppCompatActivity {
                 CoryOren.setUser_rating(3);
                 CoryOren.setDescription("Cory is a singer who sings.");
                 CoryOren.setReviews(bandReviews);
+                // Set Images for this performer
+                Image CoryOrenImage1 = new Image();
+                Image CoryOrenImage2 = new Image();
+                CoryOrenImage1.setImage(getBitMapData(R.drawable.cory_oren0));
+                CoryOrenImage2.setImage(getBitMapData(R.drawable.cory_oren1));
+                // Add Images to RealmList and set this RealmList for this performer
+                bandImages.add(CoryOrenImage1);
+                bandImages.add(CoryOrenImage2);
+                CoryOren.setPictures(bandImages);
                 event1.setPerformer(CoryOren);
                 event1.setDate("10/30/2018");
                 event1.setVenue(Vaudeville);
@@ -126,7 +148,9 @@ public class MainActivity extends AppCompatActivity {
                 event1.setMinPrice(25);
                 event1.setTicketLink("https://www.amazon.com/");
                 realm.copyToRealmOrUpdate(event1);
+                bandImages.clear(); // clear bandImages to use for the next band
 
+                // event2
                 Event event2 = new Event();
                 Band BandPerry = new Band();
                 Venue Woolys = new Venue();
@@ -135,6 +159,15 @@ public class MainActivity extends AppCompatActivity {
                 BandPerry.setUser_rating(4);
                 BandPerry.setDescription("Perry is a band that plays together.");
                 BandPerry.setReviews(bandReviews);
+                // Set Images for this performer
+                Image BandPerryImage1 = new Image();
+                Image BandPerryImage2 = new Image();
+                BandPerryImage1.setImage(getBitMapData(R.drawable.band_perry0));
+                BandPerryImage2.setImage(getBitMapData(R.drawable.band_perry1));
+                // Add Images to RealmList and set this RealmList for this performer
+                bandImages.add(BandPerryImage1);
+                bandImages.add(BandPerryImage2);
+                BandPerry.setPictures(bandImages);
                 Woolys.setVenueName("Woolys");
                 event2.setPerformer(BandPerry);
                 event2.setDate("11/3/2018");
@@ -143,7 +176,9 @@ public class MainActivity extends AppCompatActivity {
                 event2.setMinPrice(30);
                 event2.setTicketLink("https://www.amazon.com/");
                 realm.copyToRealmOrUpdate(event2);
+                bandImages.clear(); // clear bandImages to use for the next band
 
+                // event3
                 Event event3 = new Event();
                 Band TaylorSwift = new Band();
                 Venue SportsPlace = new Venue();
@@ -152,6 +187,15 @@ public class MainActivity extends AppCompatActivity {
                 TaylorSwift.setUser_rating(5);
                 TaylorSwift.setDescription("T-Swift is the best!");
                 TaylorSwift.setReviews(bandReviews);
+                // Set Images for this performer
+                Image TaylorSwiftImage1 = new Image();
+                Image TaylorSwiftImage2 = new Image();
+                TaylorSwiftImage1.setImage(getBitMapData(R.drawable.taylor_swift0));
+                TaylorSwiftImage2.setImage(getBitMapData(R.drawable.taylor_swift1));
+                // Add Images to RealmList and set this RealmList for this performer
+                bandImages.add(TaylorSwiftImage1);
+                bandImages.add(TaylorSwiftImage2);
+                TaylorSwift.setPictures(bandImages);
                 SportsPlace.setVenueName("Whatever it's called");
                 event3.setPerformer(TaylorSwift);
                 event3.setDate("10/15/2018");
@@ -160,7 +204,20 @@ public class MainActivity extends AppCompatActivity {
                 event3.setMinPrice(80);
                 event3.setTicketLink("https://www.amazon.com/");
                 realm.copyToRealmOrUpdate(event3);
+                bandImages.clear(); // clear bandImages to use for the next band
             }
         });
+    }
+
+    // Source for converting drawable to byte[]
+    // source: https://stackoverflow.com/questions/4435806/drawable-to-byte
+    // user: Kalpesh
+    public byte[] getBitMapData(int image){
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), image);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] bitMapData = stream.toByteArray();
+
+        return bitMapData;
     }
 }

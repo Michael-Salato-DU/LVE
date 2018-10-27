@@ -6,6 +6,8 @@ package du.a188project1.bestdamapp;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -58,6 +60,13 @@ public class EventProfileFragment extends Fragment {
         realm = Realm.getDefaultInstance();
 
         final EventActivity eventActivity = (EventActivity) this.getActivity();
+
+        // set the image
+        if(eventActivity.event.getPerformer().getPictures().size() != 0) {
+            Bitmap bmp = BitmapFactory.decodeByteArray(eventActivity.event.getPerformer().getPictures().get(0).getImage(),
+                    0, eventActivity.event.getPerformer().getPictures().get(0).getImage().length);
+            imageView.setImageBitmap(bmp);
+        }
 
         // Set the band name, venue, genre, and price range textViews.
         bandNameView.setText(eventActivity.event.getPerformer().getName());

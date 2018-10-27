@@ -5,6 +5,8 @@
 package du.a188project1.bestdamapp;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -45,6 +47,13 @@ public class BandProfileFragment extends Fragment {
         bandDescriptionView = (TextView) view.findViewById(R.id.band_description_view);
 
         final EventActivity eventActivity = (EventActivity) this.getActivity();
+
+        // set the image
+        if(eventActivity.event.getPerformer().getPictures().size() != 0) {
+            Bitmap bmp = BitmapFactory.decodeByteArray(eventActivity.event.getPerformer().getPictures().get(1).getImage(),
+                    0, eventActivity.event.getPerformer().getPictures().get(1).getImage().length);
+            imageView.setImageBitmap(bmp);
+        }
 
         // Set the band name, user rating, and band description textViews.
         bandNameView.setText(eventActivity.event.getPerformer().getName());
