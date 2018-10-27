@@ -6,6 +6,8 @@ package du.a188project1.bestdamapp;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -59,16 +61,24 @@ public class EventProfileFragment extends Fragment {
 
         final EventActivity eventActivity = (EventActivity) this.getActivity();
 
+        // set the image
+        if(eventActivity.event.getPerformer().getPictures().size() != 0) {
+            Bitmap bmp = BitmapFactory.decodeByteArray(eventActivity.event.getPerformer().getPictures().get(0).getImage(),
+                    0, eventActivity.event.getPerformer().getPictures().get(0).getImage().length);
+            imageView.setImageBitmap(bmp);
+        }
+
         // Set the band name, venue, genre, and price range textViews.
         bandNameView.setText(eventActivity.event.getPerformer().getName());
         venueView.setText(eventActivity.event.getVenue().getVenueName());
         genreView.setText(eventActivity.event.getPerformer().getGenre());
-        priceView.setText(Integer.toString(eventActivity.event.getMinPrice()));
+        priceView.setText("$"+Integer.toString(eventActivity.event.getMinPrice())+" per ticket");
 
         // Link to the official website to buy the tickets.
-        // source to link to a website:
+        // source to link to a website: How to open a website when a Button is clicked in Android application?
         // https://stackoverflow.com/questions/5026349/how-to-open-a-website-when-a-button-is-clicked-in-android-application
         // user: Sampad
+        // date: Oct. 31, 2016
         buyTicketsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();

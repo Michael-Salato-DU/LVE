@@ -5,10 +5,14 @@ Landing page of app with three tabs. Selecting a tab opens up a fragment.
  */
 package du.a188project1.bestdamapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+
+import java.io.ByteArrayOutputStream;
 
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -81,34 +85,32 @@ public class MainActivity extends AppCompatActivity {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                // Create a list of reviews to use for each performer.
+                                // Create a list of reviews to use for each performer.
                 RealmList<Review> bandReviews = new RealmList<Review>();
 
                 Review review1 = new Review();
                 review1.setId("review1");
-                review1.setMessage("Amazing!");
+                review1.setMessage("I don't know how else to put it. This performance" +
+                        " was simply amazing!");
+                review1.setImage(getBitMapData(R.drawable.review_image0,280,200));
 
                 Review review2 = new Review();
                 review2.setId("review2");
                 review2.setMessage("So energetic!");
+                review2.setImage(getBitMapData(R.drawable.review_image1,280,200));
 
                 Review review3 = new Review();
                 review3.setId("review3");
                 review3.setMessage("Meh.");
-
-                Review review4 = new Review();
-                review4.setId("review4");
-                review4.setMessage("I liked it.");
-
-                Review review5 = new Review();
-                review5.setId("review5");
-                review5.setMessage("It was aight.");
+                review3.setImage(getBitMapData(R.drawable.review_image2,280,200));
 
                 bandReviews.add(review1);
                 bandReviews.add(review2);
                 bandReviews.add(review3);
-                bandReviews.add(review4);
-                bandReviews.add(review5);
+              
+                // Create a list of Images to use for each performer.
+                // Will clear this list after setting it for each performer.
+                RealmList<Image> bandImages = new RealmList<Image>();
 
                 Event colonyHouseWoolys = new Event();
                 Band colonyHouse = new Band();
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 colonyHouseWoolys.setMaxPrice(18);
                 colonyHouseWoolys.setTicketLink("https://www.ticketfly.com/purchase/event/1695445");
                 realm.copyToRealmOrUpdate(colonyHouseWoolys);
+                bandImages.clear(); // clear bandImages to use for the next band
 
                 Event johnathanDavisWoolys = new Event();
                 Band johnathanDavis = new Band();
@@ -143,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 johnathanDavisWoolys.setMaxPrice(32);
                 johnathanDavisWoolys.setTicketLink("https://www.ticketfly.com/purchase/event/1757718");
                 realm.copyToRealmOrUpdate(johnathanDavisWoolys);
+                bandImages.clear(); // clear bandImages to use for the next band
 
                 Event nedLedouxWoolys = new Event();
                 Band nedLedoux = new Band();
@@ -159,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 nedLedouxWoolys.setMaxPrice(18);
                 nedLedouxWoolys.setTicketLink("https://www.ticketfly.com/purchase/event/1771092");
                 realm.copyToRealmOrUpdate(nedLedouxWoolys);
+                bandImages.clear(); // clear bandImages to use for the next band
 
                 Event suicideGirlsWoolys = new Event();
                 Band suicideGirls = new Band();
@@ -175,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 suicideGirlsWoolys.setMaxPrice(75);
                 suicideGirlsWoolys.setTicketLink("https://www.ticketfly.com/purchase/event/1692597");
                 realm.copyToRealmOrUpdate(suicideGirlsWoolys);
+                bandImages.clear(); // clear bandImages to use for the next band
 
                 Event bandPerryWoolys = new Event();
                 Band bandPerry = new Band();
@@ -183,6 +189,15 @@ public class MainActivity extends AppCompatActivity {
                 bandPerry.setDescription("The Band Perry's \"modern throwback\" style combines classic Country with an eclectic infusion of Rock and Soul. As songwriters and musicians, their sound is rounded out by perfect three-part harmonies. The self-titled debut album, THE BAND PERRY, was released in October 2010 by Republic Nashville and one year later was certified Platinum.");
                 bandPerry.setReviews(bandReviews);
                 bandPerry.setUser_rating(5);
+                // Set Images for this performer
+                Image BandPerryImage1 = new Image();
+                Image BandPerryImage2 = new Image();
+                BandPerryImage1.setImage(getBitMapData(R.drawable.band_perry0,600,338));
+                BandPerryImage2.setImage(getBitMapData(R.drawable.band_perry1,600,338));
+                // Add Images to RealmList and set this RealmList for this performer
+                bandImages.add(BandPerryImage1);
+                bandImages.add(BandPerryImage2);
+                BandPerry.setPictures(bandImages);
                 bandPerryWoolys.setId("bandPerry110318");
                 bandPerryWoolys.setPerformer(bandPerry);
                 bandPerryWoolys.setVenue(woolys);
@@ -191,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
                 bandPerryWoolys.setMaxPrice(0);
                 bandPerryWoolys.setTicketLink("http://www.woolysdm.com/event/1767246-band-perry-des-moines/");
                 realm.copyToRealmOrUpdate(bandPerryWoolys);
+                bandImages.clear(); // clear bandImages to use for the next band
 
                 Event gregoryIsakovWoolys = new Event();
                 Band gregoryIsakov = new Band();
@@ -207,7 +223,31 @@ public class MainActivity extends AppCompatActivity {
                 gregoryIsakovWoolys.setMaxPrice(30);
                 gregoryIsakovWoolys.setTicketLink("https://www.ticketfly.com/purchase/event/1726691");
                 realm.copyToRealmOrUpdate(gregoryIsakovWoolys);
+                bandImages.clear(); // clear bandImages to use for the next band
+                                         
             }
         });
+    }
+
+    // Resize images and convert to byte[]
+    public byte[] getBitMapData(int image, int newWidth, int newHeight){
+
+        // Source for getting bitMap from drawable: Drawable to byte[]
+        // https://stackoverflow.com/questions/4435806/drawable-to-byte
+        // user: Kalpesh
+        // date: July 16, 2012
+        Bitmap bitMap = BitmapFactory.decodeResource(getResources(), image);
+
+        // Source for scaling bitMap: Resize Drawable in Android
+        // https://stackoverflow.com/questions/7021578/resize-drawable-in-android
+        // user: craned
+        // date: May 9, 2014
+        Bitmap bitMapScaled = Bitmap.createScaledBitmap(bitMap, newWidth, newHeight, true);
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitMapScaled.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] bitMapData = stream.toByteArray();
+
+        return bitMapData;
     }
 }
