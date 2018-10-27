@@ -107,48 +107,88 @@ public class MainActivity extends AppCompatActivity {
                 bandReviews.add(review1);
                 bandReviews.add(review2);
                 bandReviews.add(review3);
-
+              
                 // Create a list of Images to use for each performer.
                 // Will clear this list after setting it for each performer.
                 RealmList<Image> bandImages = new RealmList<Image>();
 
-                // Create events and populate them with data
-                // event 1
-                Event event1 = new Event();
-                Band CoryOren = new Band();
-                Venue Vaudeville = new Venue();
-                Vaudeville.setVenueName("Vaudeville");
-                CoryOren.setName("Cory Oren");
-                CoryOren.setGenre("Pop");
-                CoryOren.setUser_rating(3);
-                CoryOren.setDescription("Cory is a singer who sings.");
-                CoryOren.setReviews(bandReviews);
-                // Set Images for this performer
-                Image CoryOrenImage1 = new Image();
-                Image CoryOrenImage2 = new Image();
-                CoryOrenImage1.setImage(getBitMapData(R.drawable.cory_oren0,600,338));
-                CoryOrenImage2.setImage(getBitMapData(R.drawable.cory_oren1,600,338));
-                bandImages.add(CoryOrenImage1);
-                bandImages.add(CoryOrenImage2);
-                CoryOren.setPictures(bandImages);
-                event1.setPerformer(CoryOren);
-                event1.setDate("10/30/2018");
-                event1.setVenue(Vaudeville);
-                event1.setId("OrenVaudeville");
-                event1.setMinPrice(25);
-                event1.setTicketLink("https://www.amazon.com/");
-                realm.copyToRealmOrUpdate(event1);
+                Event colonyHouseWoolys = new Event();
+                Band colonyHouse = new Band();
+                Venue woolys = new Venue();
+                colonyHouse.setName("Colony House");
+                colonyHouse.setGenre("Rock");
+                colonyHouse.setDescription("Colony House, a humble apartment complex on 11th Ave. in downtown Franklin, Tennessee, has at some point in each of our lives been our home. Now it is our namesake as we take Franklin, TN with us and travel around the world playing music for those who will listen!");
+                colonyHouse.setReviews(bandReviews);
+                colonyHouse.setUser_rating(5);
+                woolys.setVenueName("Wooly's");
+                colonyHouseWoolys.setId("colonyHouse102918");
+                colonyHouseWoolys.setPerformer(colonyHouse);
+                colonyHouseWoolys.setVenue(woolys);
+                colonyHouseWoolys.setDate("10/29/2018");
+                colonyHouseWoolys.setMinPrice(16);
+                colonyHouseWoolys.setMaxPrice(18);
+                colonyHouseWoolys.setTicketLink("https://www.ticketfly.com/purchase/event/1695445");
+                realm.copyToRealmOrUpdate(colonyHouseWoolys);
                 bandImages.clear(); // clear bandImages to use for the next band
 
-                // event2
-                Event event2 = new Event();
-                Band BandPerry = new Band();
-                Venue Woolys = new Venue();
-                BandPerry.setName("The Band Perry");
-                BandPerry.setGenre("Jazz");
-                BandPerry.setUser_rating(4);
-                BandPerry.setDescription("Perry is a band that plays together.");
-                BandPerry.setReviews(bandReviews);
+                Event johnathanDavisWoolys = new Event();
+                Band johnathanDavis = new Band();
+                johnathanDavis.setName("Johnathan Davis");
+                johnathanDavis.setGenre("Metal");
+                johnathanDavis.setDescription("None available");
+                johnathanDavis.setReviews(bandReviews);
+                johnathanDavis.setUser_rating(4);
+                johnathanDavisWoolys.setId("johnathanDavis102018");
+                johnathanDavisWoolys.setPerformer(johnathanDavis);
+                johnathanDavisWoolys.setVenue(woolys);
+                johnathanDavisWoolys.setDate("10/20/2018");
+                johnathanDavisWoolys.setMinPrice(29);
+                johnathanDavisWoolys.setMaxPrice(32);
+                johnathanDavisWoolys.setTicketLink("https://www.ticketfly.com/purchase/event/1757718");
+                realm.copyToRealmOrUpdate(johnathanDavisWoolys);
+                bandImages.clear(); // clear bandImages to use for the next band
+
+                Event nedLedouxWoolys = new Event();
+                Band nedLedoux = new Band();
+                nedLedoux.setName("Ned leDoux");
+                nedLedoux.setGenre("Country");
+                nedLedoux.setDescription("In country music, a last name like LeDoux casts a big, storied and bittersweet shadow, but it’s one Ned LeDoux doesn’t mind standing in one bit. Having been a drummer in his dad Chris’ band Western Underground since 1998, Ned knew from an early age that he had “no plan b” but to play music, “Once I got the taste of the road, and being in front of a crowd and just the sound of it, it was...freedom.” The timing couldn’t be more right for Ned to pick up a guitar and belt out “Western Skies;” it has been over 10 years since Chris LeDoux passed and he believes people want to hear something new. Ned has boxes of song ideas his dad never finished and is digging through those for inspiration, “I will kind of stick with what dad used to do but bring my own stuff to the table.” In July of 2015, Ned traveled to Nashville with some of those unfinished songs and met up with Mac McAnally to put that inspiration to work. Mac produced Chris’ last two studio records and wrote his hit “Horsepower,” so the collaboration with Ned was a natural fit and lead to the first new Chris LeDoux co-write in nearly two decades.");
+                nedLedoux.setReviews(bandReviews);
+                nedLedoux.setUser_rating(5);
+                nedLedouxWoolys.setId("nedLedoux110118");
+                nedLedouxWoolys.setPerformer(nedLedoux);
+                nedLedouxWoolys.setVenue(woolys);
+                nedLedouxWoolys.setDate("11/01/2018");
+                nedLedouxWoolys.setMinPrice(15);
+                nedLedouxWoolys.setMaxPrice(18);
+                nedLedouxWoolys.setTicketLink("https://www.ticketfly.com/purchase/event/1771092");
+                realm.copyToRealmOrUpdate(nedLedouxWoolys);
+                bandImages.clear(); // clear bandImages to use for the next band
+
+                Event suicideGirlsWoolys = new Event();
+                Band suicideGirls = new Band();
+                suicideGirls.setName("SuicideGirls: Blackheart Burlesque");
+                suicideGirls.setGenre("Dance");
+                suicideGirls.setDescription("SuicideGirls: Blackheart Burlesque is the sexiest, smartest, geekiest, and most fun definitive pop-culture burlesque show! Featuring none other than SuicideGirls themselves, the show has been performed hundreds of times, delighted millions of fans in over six countries, and has been touring since 2003! Don’t miss your chance to see it live during the 2018 US Tour! SuicideGirls has been redefining beauty since 2001 with its network of over 3,000 SuicideGirls and almost 9 million pinup-style photographs on the premier, members-only social network SuicideGirls.com. Check out blackheartburlesque.com for more information about the tour and to see where the girls are headed next!");
+                suicideGirls.setReviews(bandReviews);
+                suicideGirls.setUser_rating(4);
+                suicideGirlsWoolys.setId("suicideGirls110218");
+                suicideGirlsWoolys.setPerformer(suicideGirls);
+                suicideGirlsWoolys.setVenue(woolys);
+                suicideGirlsWoolys.setDate("11/02/2018");
+                suicideGirlsWoolys.setMinPrice(25);
+                suicideGirlsWoolys.setMaxPrice(75);
+                suicideGirlsWoolys.setTicketLink("https://www.ticketfly.com/purchase/event/1692597");
+                realm.copyToRealmOrUpdate(suicideGirlsWoolys);
+                bandImages.clear(); // clear bandImages to use for the next band
+
+                Event bandPerryWoolys = new Event();
+                Band bandPerry = new Band();
+                bandPerry.setName("The Band Perry");
+                bandPerry.setGenre("Country");
+                bandPerry.setDescription("The Band Perry's \"modern throwback\" style combines classic Country with an eclectic infusion of Rock and Soul. As songwriters and musicians, their sound is rounded out by perfect three-part harmonies. The self-titled debut album, THE BAND PERRY, was released in October 2010 by Republic Nashville and one year later was certified Platinum.");
+                bandPerry.setReviews(bandReviews);
+                bandPerry.setUser_rating(5);
                 // Set Images for this performer
                 Image BandPerryImage1 = new Image();
                 Image BandPerryImage2 = new Image();
@@ -158,43 +198,33 @@ public class MainActivity extends AppCompatActivity {
                 bandImages.add(BandPerryImage1);
                 bandImages.add(BandPerryImage2);
                 BandPerry.setPictures(bandImages);
-                Woolys.setVenueName("Woolys");
-                event2.setPerformer(BandPerry);
-                event2.setDate("11/3/2018");
-                event2.setVenue(Woolys);
-                event2.setId("PerryWoolys");
-                event2.setMinPrice(30);
-                event2.setTicketLink("https://www.amazon.com/");
-                realm.copyToRealmOrUpdate(event2);
+                bandPerryWoolys.setId("bandPerry110318");
+                bandPerryWoolys.setPerformer(bandPerry);
+                bandPerryWoolys.setVenue(woolys);
+                bandPerryWoolys.setDate("11/03/2018");
+                bandPerryWoolys.setMinPrice(0);
+                bandPerryWoolys.setMaxPrice(0);
+                bandPerryWoolys.setTicketLink("http://www.woolysdm.com/event/1767246-band-perry-des-moines/");
+                realm.copyToRealmOrUpdate(bandPerryWoolys);
                 bandImages.clear(); // clear bandImages to use for the next band
 
-                // event3
-                Event event3 = new Event();
-                Band TaylorSwift = new Band();
-                Venue SportsPlace = new Venue();
-                TaylorSwift.setName("Taylor Swift");
-                TaylorSwift.setGenre("Indie");
-                TaylorSwift.setUser_rating(5);
-                TaylorSwift.setDescription("T-Swift is the best!");
-                TaylorSwift.setReviews(bandReviews);
-                // Set Images for this performer
-                Image TaylorSwiftImage1 = new Image();
-                Image TaylorSwiftImage2 = new Image();
-                TaylorSwiftImage1.setImage(getBitMapData(R.drawable.taylor_swift0,600,338));
-                TaylorSwiftImage2.setImage(getBitMapData(R.drawable.taylor_swift1,600,338));
-                // Add Images to RealmList and set this RealmList for this performer
-                bandImages.add(TaylorSwiftImage1);
-                bandImages.add(TaylorSwiftImage2);
-                TaylorSwift.setPictures(bandImages);
-                SportsPlace.setVenueName("Whatever it's called");
-                event3.setPerformer(TaylorSwift);
-                event3.setDate("10/15/2018");
-                event3.setVenue(SportsPlace);
-                event3.setId("TaylorTest");
-                event3.setMinPrice(80);
-                event3.setTicketLink("https://www.amazon.com/");
-                realm.copyToRealmOrUpdate(event3);
+                Event gregoryIsakovWoolys = new Event();
+                Band gregoryIsakov = new Band();
+                gregoryIsakov.setName("Gregory Alan Isakov");
+                gregoryIsakov.setGenre("Indie");
+                gregoryIsakov.setDescription("Born in Johannesburg, South Africa, and calling Colorado home, Gregory Alan Isakov has been traveling all his life. Songs that hone a masterful quality tell a story of miles and landscapes, and the search for a sense of place. His song-craft lends to deep lyrical masterpieces, with hints of his influences, Leonard Cohen and Bruce Springsteen. He has been described as “strong, subtle, a lyrical genius.” Isakov will be releasing a new album, Evening Machines, on October 5th, 2018.");
+                gregoryIsakov.setReviews(bandReviews);
+                gregoryIsakov.setUser_rating(4);
+                gregoryIsakovWoolys.setId("gregoryIsakov110418");
+                gregoryIsakovWoolys.setPerformer(gregoryIsakov);
+                gregoryIsakovWoolys.setVenue(woolys);
+                gregoryIsakovWoolys.setDate("11/04/2018");
+                gregoryIsakovWoolys.setMinPrice(25);
+                gregoryIsakovWoolys.setMaxPrice(30);
+                gregoryIsakovWoolys.setTicketLink("https://www.ticketfly.com/purchase/event/1726691");
+                realm.copyToRealmOrUpdate(gregoryIsakovWoolys);
                 bandImages.clear(); // clear bandImages to use for the next band
+                                         
             }
         });
     }
