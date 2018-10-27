@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 // Add Images to RealmList and set this RealmList for this performer
                 bandImages.add(BandPerryImage1);
                 bandImages.add(BandPerryImage2);
-                BandPerry.setPictures(bandImages);
+                bandPerry.setPictures(bandImages);
                 bandPerryWoolys.setId("bandPerry110318");
                 bandPerryWoolys.setPerformer(bandPerry);
                 bandPerryWoolys.setVenue(woolys);
