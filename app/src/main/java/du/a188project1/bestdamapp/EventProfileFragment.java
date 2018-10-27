@@ -72,7 +72,7 @@ public class EventProfileFragment extends Fragment {
         bandNameView.setText(eventActivity.event.getPerformer().getName());
         venueView.setText(eventActivity.event.getVenue().getVenueName());
         genreView.setText(eventActivity.event.getPerformer().getGenre());
-        priceView.setText(Integer.toString(eventActivity.event.getMinPrice()));
+        priceView.setText("$"+Integer.toString(eventActivity.event.getMinPrice())+" per ticket");
 
         // Link to the official website to buy the tickets.
         // source to link to a website:
