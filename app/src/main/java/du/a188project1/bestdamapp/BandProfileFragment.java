@@ -55,10 +55,21 @@ public class BandProfileFragment extends Fragment {
             imageView.setImageBitmap(bmp);
         }
 
-        // Set the band name, user rating, and band description textViews.
+        // Set the band name and band description textViews.
         bandNameView.setText(eventActivity.event.getPerformer().getName());
-        userRatingView.setText(Integer.toString(eventActivity.event.getPerformer().getUser_rating()));
         bandDescriptionView.setText(eventActivity.event.getPerformer().getDescription());
+
+        // get the user rating for this performer
+        int userRating = eventActivity.event.getPerformer().getUser_rating();
+        // create an empty string
+        String userRatingString = "";
+        // loop (zero to userRating) times and concatenate a new * each loop
+        for (int i = 0; i < userRating; i++) {
+            userRatingString += "* ";
+        }
+
+        // set the user rating textView
+        userRatingView.setText(userRatingString);
 
         return view;
     }

@@ -92,30 +92,21 @@ public class MainActivity extends AppCompatActivity {
                 review1.setId("review1");
                 review1.setMessage("I don't know how else to put it. This performance" +
                         " was simply amazing!");
-                review1.setImage(getBitMapData(R.drawable.review_image0));
+                review1.setImage(getBitMapData(R.drawable.review_image0,280,200));
 
                 Review review2 = new Review();
                 review2.setId("review2");
                 review2.setMessage("So energetic!");
-                review2.setImage(getBitMapData(R.drawable.review_image1));
+                review2.setImage(getBitMapData(R.drawable.review_image1,280,200));
 
                 Review review3 = new Review();
                 review3.setId("review3");
                 review3.setMessage("Meh.");
-
-                Review review4 = new Review();
-                review4.setId("review4");
-                review4.setMessage("I liked it.");
-
-                Review review5 = new Review();
-                review5.setId("review5");
-                review5.setMessage("It was aight.");
+                review3.setImage(getBitMapData(R.drawable.review_image2,280,200));
 
                 bandReviews.add(review1);
                 bandReviews.add(review2);
                 bandReviews.add(review3);
-                bandReviews.add(review4);
-                bandReviews.add(review5);
 
                 // Create a list of Images to use for each performer.
                 // Will clear this list after setting it for each performer.
@@ -135,9 +126,8 @@ public class MainActivity extends AppCompatActivity {
                 // Set Images for this performer
                 Image CoryOrenImage1 = new Image();
                 Image CoryOrenImage2 = new Image();
-                CoryOrenImage1.setImage(getBitMapData(R.drawable.cory_oren0));
-                CoryOrenImage2.setImage(getBitMapData(R.drawable.cory_oren1));
-                // Add Images to RealmList and set this RealmList for this performer
+                CoryOrenImage1.setImage(getBitMapData(R.drawable.cory_oren0,600,338));
+                CoryOrenImage2.setImage(getBitMapData(R.drawable.cory_oren1,600,338));
                 bandImages.add(CoryOrenImage1);
                 bandImages.add(CoryOrenImage2);
                 CoryOren.setPictures(bandImages);
@@ -162,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
                 // Set Images for this performer
                 Image BandPerryImage1 = new Image();
                 Image BandPerryImage2 = new Image();
-                BandPerryImage1.setImage(getBitMapData(R.drawable.band_perry0));
-                BandPerryImage2.setImage(getBitMapData(R.drawable.band_perry1));
+                BandPerryImage1.setImage(getBitMapData(R.drawable.band_perry0,600,338));
+                BandPerryImage2.setImage(getBitMapData(R.drawable.band_perry1,600,338));
                 // Add Images to RealmList and set this RealmList for this performer
                 bandImages.add(BandPerryImage1);
                 bandImages.add(BandPerryImage2);
@@ -190,8 +180,8 @@ public class MainActivity extends AppCompatActivity {
                 // Set Images for this performer
                 Image TaylorSwiftImage1 = new Image();
                 Image TaylorSwiftImage2 = new Image();
-                TaylorSwiftImage1.setImage(getBitMapData(R.drawable.taylor_swift0));
-                TaylorSwiftImage2.setImage(getBitMapData(R.drawable.taylor_swift1));
+                TaylorSwiftImage1.setImage(getBitMapData(R.drawable.taylor_swift0,600,338));
+                TaylorSwiftImage2.setImage(getBitMapData(R.drawable.taylor_swift1,600,338));
                 // Add Images to RealmList and set this RealmList for this performer
                 bandImages.add(TaylorSwiftImage1);
                 bandImages.add(TaylorSwiftImage2);
@@ -209,13 +199,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Source for converting drawable to byte[]
-    // source: https://stackoverflow.com/questions/4435806/drawable-to-byte
-    // user: Kalpesh
-    public byte[] getBitMapData(int image){
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), image);
+    // Resize images and convert to byte[]
+    public byte[] getBitMapData(int image, int newWidth, int newHeight){
+
+        // Source for getting bitMap from drawable: Drawable to byte[]
+        // https://stackoverflow.com/questions/4435806/drawable-to-byte
+        // user: Kalpesh
+        // date: July 16, 2012
+        Bitmap bitMap = BitmapFactory.decodeResource(getResources(), image);
+
+        // Source for scaling bitMap: Resize Drawable in Android
+        // https://stackoverflow.com/questions/7021578/resize-drawable-in-android
+        // user: craned
+        // date: May 9, 2014
+        Bitmap bitMapScaled = Bitmap.createScaledBitmap(bitMap, newWidth, newHeight, true);
+
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bitMapScaled.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] bitMapData = stream.toByteArray();
 
         return bitMapData;
