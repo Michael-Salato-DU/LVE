@@ -75,9 +75,10 @@ public class EventProfileFragment extends Fragment {
         priceView.setText("$"+Integer.toString(eventActivity.event.getMinPrice())+" per ticket");
 
         // Link to the official website to buy the tickets.
-        // source to link to a website:
+        // source to link to a website: How to open a website when a Button is clicked in Android application?
         // https://stackoverflow.com/questions/5026349/how-to-open-a-website-when-a-button-is-clicked-in-android-application
         // user: Sampad
+        // date: Oct. 31, 2016
         buyTicketsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
