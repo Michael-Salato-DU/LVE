@@ -1,5 +1,6 @@
 /* Michael Salato
-   Fragment that will show the information for an event.
+   "Event Profile" tab. Fragment that will show the information for an event.
+   Can purchase tickets and follow the event from this tab.
  */
 
 package du.a188project1.bestdamapp;
@@ -57,11 +58,13 @@ public class EventProfileFragment extends Fragment {
         followButton = (Button) view.findViewById(R.id.follow_button);
         buyTicketsButton = (Button) view.findViewById(R.id.buy_tickets_button);
 
+        // Get a realm instance
         realm = Realm.getDefaultInstance();
 
+        // Declare an EventActivity variable
         final EventActivity eventActivity = (EventActivity) this.getActivity();
 
-        // set the image
+        // Set the image of the band performing
         if(eventActivity.event.getPerformer().getPictures().size() != 0) {
             Bitmap bmp = BitmapFactory.decodeByteArray(eventActivity.event.getPerformer().getPictures().get(0).getImage(),
                     0, eventActivity.event.getPerformer().getPictures().get(0).getImage().length);
@@ -72,6 +75,7 @@ public class EventProfileFragment extends Fragment {
         bandNameView.setText(eventActivity.event.getPerformer().getName());
         venueView.setText(eventActivity.event.getVenue().getVenueName());
         genreView.setText(eventActivity.event.getPerformer().getGenre());
+        // priceView displays as a range (i.e. $25 - $50 per ticket)
         priceView.setText("$"+Integer.toString(eventActivity.event.getMinPrice())+ " - $" +
                 Integer.toString(eventActivity.event.getMaxPrice()) + " per ticket");
 
@@ -85,7 +89,7 @@ public class EventProfileFragment extends Fragment {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse(eventActivity.event.getTicketLink()));
+                intent.setData(Uri.parse(eventActivity.event.getTicketLink())); // set the website link
                 startActivity(intent);
             } });
 
@@ -96,9 +100,13 @@ public class EventProfileFragment extends Fragment {
                 realm.executeTransaction(new Realm.Transaction() {
                     @Override
                     public void execute(Realm realm) {
+                            // Get the RealmList of Events for this user
                             RealmList<Event> updatedList = eventActivity.user.getSaved_events();
+                            // Add this event to the RealmList
                             updatedList.add(eventActivity.event);
+                            // Set the user's updated RealmList of Events
                             eventActivity.user.setSaved_events(updatedList);
+                            // Update in realm database
                             realm.copyToRealmOrUpdate(eventActivity.user);
                     }
                 });

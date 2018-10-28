@@ -1,5 +1,6 @@
 /* Michael Salato
    EventActivity to control tabs related to the event and band.
+   Selecting a tab opens up a fragment.
  */
 
 package du.a188project1.bestdamapp;
@@ -22,6 +23,7 @@ import io.realm.Realm;
 
 public class EventActivity extends AppCompatActivity {
 
+    // Declare variables
     public User user;
     public Event event;
 
@@ -29,6 +31,7 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        // Setup toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -39,10 +42,12 @@ public class EventActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Reviews"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        // Setup ViewPager and EventTabPagerAdapter.
         final ViewPager viewPager = (ViewPager)findViewById(R.id.viewpager);
         final EventTabPagerAdapter adapter = new EventTabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
 
+        // Setup listeners for selecting tabs
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -61,10 +66,13 @@ public class EventActivity extends AppCompatActivity {
             }
         });
 
+        // Get realm instance
         Realm realm = Realm.getDefaultInstance();
+        // Get the user with the email address passed from MainActivity
         String currentEmail = (String) getIntent().getStringExtra("current_email");
         user = realm.where(User.class).equalTo("email", currentEmail).findFirst();
 
+        // Get the event with the eventID passed from MainActivity
         String eventID = (String) getIntent().getStringExtra("event");
         event = realm.where(Event.class).equalTo("id", eventID).findFirst();
 }

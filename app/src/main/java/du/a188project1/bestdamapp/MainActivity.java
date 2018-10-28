@@ -26,6 +26,7 @@ import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Declare variables
     public User user;
 
     @Override
@@ -72,9 +73,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d("UserName", user.getFirst_name());
         Log.d("UserEmail", user.getEmail());
 
+        // Get a RealmList of all the Events
         final RealmResults<Event> events = realm.where(Event.class).findAll();
         RealmList<Event> allEvents = new RealmList<Event>();
         allEvents.addAll(events.subList(0, events.size()));
+        // populate Events if there are none yet
         if(allEvents.size()==0) {
             populateEvents();
         }
@@ -101,10 +104,12 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Your Events"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        // Setup ViewPager and TabPagerAdapter.
         final ViewPager viewPager = (ViewPager)findViewById(R.id.viewpager);
         final TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
 
+        // Setup listeners for selecting tabs
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -124,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // populateEvents() adds stock Events, Venues, Bands, and Reviews
     public void populateEvents(){
         Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(new Realm.Transaction() {
@@ -134,22 +140,26 @@ public class MainActivity extends AppCompatActivity {
                 // Create a list of reviews to use for each performer.
                 RealmList<Review> bandReviews = new RealmList<Review>();
 
+                // Create a Review and set its id, message, and image
                 Review review1 = new Review();
                 review1.setId("review1");
                 review1.setMessage("I don't know how else to put it. This performance" +
                         " was simply amazing!");
                 review1.setImage(getBitMapData(R.drawable.review_image0));
 
+                // Create a Review and set its id, message, and image
                 Review review2 = new Review();
                 review2.setId("review2");
                 review2.setMessage("So energetic!");
                 review2.setImage(getBitMapData(R.drawable.review_image1));
 
+                // Create a Review and set its id, message, and image
                 Review review3 = new Review();
                 review3.setId("review3");
                 review3.setMessage("Meh.");
                 review3.setImage(getBitMapData(R.drawable.review_image2));
 
+                // Add Reviews to bandReviews
                 bandReviews.add(review1);
                 bandReviews.add(review2);
                 bandReviews.add(review3);
@@ -158,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 // Will clear this list after setting it for each performer.
                 RealmList<Image> bandImages = new RealmList<Image>();
 
+                // Event 1
                 Event colonyHouseWoolys = new Event();
                 Band colonyHouse = new Band();
                 Venue woolys = new Venue();
@@ -186,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 realm.copyToRealmOrUpdate(colonyHouseWoolys);
                 bandImages.clear(); // clear bandImages to use for the next band
 
+                // Event 2
                 Event johnathanDavisWoolys = new Event();
                 Band johnathanDavis = new Band();
                 johnathanDavis.setName("Jonathan Davis");
@@ -212,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 realm.copyToRealmOrUpdate(johnathanDavisWoolys);
                 bandImages.clear(); // clear bandImages to use for the next band
 
+                // Event 3
                 Event nedLedouxWoolys = new Event();
                 Band nedLedoux = new Band();
                 nedLedoux.setName("Ned leDoux");
@@ -238,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
                 realm.copyToRealmOrUpdate(nedLedouxWoolys);
                 bandImages.clear(); // clear bandImages to use for the next band
 
+                // Event 4
                 Event suicideGirlsWoolys = new Event();
                 Band suicideGirls = new Band();
                 suicideGirls.setName("SuicideGirls: Blackheart Burlesque");
@@ -264,6 +278,7 @@ public class MainActivity extends AppCompatActivity {
                 realm.copyToRealmOrUpdate(suicideGirlsWoolys);
                 bandImages.clear(); // clear bandImages to use for the next band
 
+                // Event 5
                 Event bandPerryWoolys = new Event();
                 Band bandPerry = new Band();
                 bandPerry.setName("The Band Perry");
@@ -290,6 +305,7 @@ public class MainActivity extends AppCompatActivity {
                 realm.copyToRealmOrUpdate(bandPerryWoolys);
                 bandImages.clear(); // clear bandImages to use for the next band
 
+                // Event 6
                 Event gregoryIsakovWoolys = new Event();
                 Band gregoryIsakov = new Band();
                 gregoryIsakov.setName("Gregory Alan Isakov");
