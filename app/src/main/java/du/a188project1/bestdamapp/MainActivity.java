@@ -11,8 +11,14 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
 
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -25,8 +31,46 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Realm realm = Realm.getDefaultInstance();
-        String current_email = getIntent().getStringExtra("current_email");
-        user = realm.where(User.class).equalTo("email",current_email).findFirst();
+        // if user clicked submit from GenreSelection (they logged in through the log in page)
+        if (getIntent().getStringExtra("current_email") != null){
+            // get the email passed from the intent
+            String current_email = getIntent().getStringExtra("current_email");
+            // get the realm User that has this email
+            user = realm.where(User.class).equalTo("email",current_email).findFirst();
+        }
+        // else open a file to get the email for User (they opened the app without going through the log in page)
+        else {
+            // Open the file that contains the most recent user's email.
+            // Source for FileInputStream and read() function: https://developer.android.com/reference/java/io/FileInputStream
+            // Source for openFileInput() function: https://developer.android.com/reference/android/content/Context#openFileInput(java.lang.String)
+            // Source for using the read() function and converting to string: https://examples.javacodegeeks.com/core-java/io/fileinputstream/read-file-with-fileinputstream/
+            // ####################################
+            String filename = "current_user_email.txt"; // the filename
+            String current_email = ""; // define an empty string to hold the email
+            int ch; // will hold each byte of data as it is read in from the file
+
+            FileInputStream inputStream; // create a FileInputStream
+
+            try {
+                inputStream = openFileInput(filename); // open the file
+
+                // Read bytes of data from this input stream until EOF (-1) is reached
+                while((ch = inputStream.read()) != -1) {
+                    current_email += (char)ch; // convert byte to char and concatenate with current_email string
+                }
+                inputStream.close(); // close the file
+
+                // get the realm User that has this email
+                user = realm.where(User.class).equalTo("email",current_email).findFirst();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // ####################################
+        }
+
+        // logs for checking that the correct User is active
+        Log.d("UserName", user.getFirst_name());
+        Log.d("UserEmail", user.getEmail());
 
         final RealmResults<Event> events = realm.where(Event.class).findAll();
         RealmList<Event> allEvents = new RealmList<Event>();
