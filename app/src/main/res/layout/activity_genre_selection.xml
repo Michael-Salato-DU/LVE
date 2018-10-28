@@ -8,17 +8,13 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/genre_list"
-        android:layout_width="370dp"
-        android:layout_height="497dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="384dp"
+        android:layout_height="435dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintTop_toBottomOf="@+id/spotify_button" />
 
     <Button
         android:id="@+id/genre_button"
@@ -31,4 +27,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/spotify_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="199dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/capsule_shape"
+        android:fontFamily="@font/proxima_nova_extrabold"
+        android:text="Connect with Spotify"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
