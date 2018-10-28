@@ -72,7 +72,8 @@ public class EventProfileFragment extends Fragment {
         bandNameView.setText(eventActivity.event.getPerformer().getName());
         venueView.setText(eventActivity.event.getVenue().getVenueName());
         genreView.setText(eventActivity.event.getPerformer().getGenre());
-        priceView.setText("$"+Integer.toString(eventActivity.event.getMinPrice())+" per ticket");
+        priceView.setText("$"+Integer.toString(eventActivity.event.getMinPrice())+ " - $" +
+                Integer.toString(eventActivity.event.getMaxPrice()) + " per ticket");
 
         // Link to the official website to buy the tickets.
         // source to link to a website: How to open a website when a Button is clicked in Android application?
