@@ -16,9 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
@@ -46,6 +43,7 @@ public class AllEventsFragment extends Fragment {
 
         Realm realm = Realm.getDefaultInstance();
         final RealmResults<Event> allEventsRealm = realm.where(Event.class).findAll();
+
         RealmList<Event> allEvents = new RealmList<Event>();
         allEvents.addAll(allEventsRealm.subList(0, allEventsRealm.size()));
         allEventsList = (RecyclerView)view.findViewById(R.id.all_events_list);

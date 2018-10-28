@@ -15,10 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
+import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
+
 
 
 /**
@@ -41,7 +41,22 @@ public class SuggestionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_suggestion, container, false);
 
+        Realm realm = Realm.getDefaultInstance();
+
+        final RealmResults<User> userPref = realm.where(User.class).findAll();
+        final RealmResults<Event> allEventRealm = realm.where(Event.class).findAll();
+
+        RealmList<String> genrePref = userPref.get(0).getGenre_list();
+
         RealmList<Event> suggestedEvents = new RealmList<Event>();
+        for (String s: genrePref){
+            for (Event e: allEventRealm){
+                if (e.getPerformer().getGenre().equals(s)){
+                    suggestedEvents.add(e);
+                }
+            }
+
+        }
         suggestionList = (RecyclerView)view.findViewById(R.id.suggestion_list);
 
         layoutManager = new LinearLayoutManager(getContext());

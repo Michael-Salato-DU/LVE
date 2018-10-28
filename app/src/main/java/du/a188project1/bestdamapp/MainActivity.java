@@ -14,15 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Scanner;
 
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
+
 
 public class MainActivity extends AppCompatActivity {
 
