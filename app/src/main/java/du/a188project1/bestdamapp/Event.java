@@ -20,10 +20,12 @@ public class Event extends RealmObject {
     private int maxPrice;
     private String ticketLink;
 
+    // accessor method for id
     public String getId() {
         return id;
     }
 
+    // mutator method for id
     public void setId(String id) {
         this.id = id;
     }

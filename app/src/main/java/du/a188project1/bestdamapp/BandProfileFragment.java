@@ -1,5 +1,6 @@
 /* Michael Salato
-   Fragment that will show information about the band in the selected event.
+   "Band Profile" tab. Fragment that will show information about the band
+   in the selected event.
  */
 
 package du.a188project1.bestdamapp;
@@ -47,9 +48,10 @@ public class BandProfileFragment extends Fragment {
         userRatingView = (TextView) view.findViewById(R.id.user_rating_view);
         bandDescriptionView = (TextView) view.findViewById(R.id.band_description_view);
 
+        // Declare an EventActivity variable
         final EventActivity eventActivity = (EventActivity) this.getActivity();
 
-        // set the image
+        // Set an image of the band
         if(eventActivity.event.getPerformer().getPictures().size() != 0) {
             Bitmap bmp = BitmapFactory.decodeByteArray(eventActivity.event.getPerformer().getPictures().get(1).getImage(),
                     0, eventActivity.event.getPerformer().getPictures().get(1).getImage().length);
