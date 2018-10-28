@@ -85,24 +85,26 @@ public class MainActivity extends AppCompatActivity {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                                // Create a list of reviews to use for each performer.
+                // ** All image sources are found in "image_sources.txt" in the assets folder **
+
+                // Create a list of reviews to use for each performer.
                 RealmList<Review> bandReviews = new RealmList<Review>();
 
                 Review review1 = new Review();
                 review1.setId("review1");
                 review1.setMessage("I don't know how else to put it. This performance" +
                         " was simply amazing!");
-                review1.setImage(getBitMapData(R.drawable.review_image0,280,200));
+                review1.setImage(getBitMapData(R.drawable.review_image0));
 
                 Review review2 = new Review();
                 review2.setId("review2");
                 review2.setMessage("So energetic!");
-                review2.setImage(getBitMapData(R.drawable.review_image1,280,200));
+                review2.setImage(getBitMapData(R.drawable.review_image1));
 
                 Review review3 = new Review();
                 review3.setId("review3");
                 review3.setMessage("Meh.");
-                review3.setImage(getBitMapData(R.drawable.review_image2,280,200));
+                review3.setImage(getBitMapData(R.drawable.review_image2));
 
                 bandReviews.add(review1);
                 bandReviews.add(review2);
@@ -120,6 +122,15 @@ public class MainActivity extends AppCompatActivity {
                 colonyHouse.setDescription("Colony House, a humble apartment complex on 11th Ave. in downtown Franklin, Tennessee, has at some point in each of our lives been our home. Now it is our namesake as we take Franklin, TN with us and travel around the world playing music for those who will listen!");
                 colonyHouse.setReviews(bandReviews);
                 colonyHouse.setUser_rating(5);
+                // Set Images for this performer
+                Image colonyHouseImage1 = new Image();
+                Image colonyHouseImage2 = new Image();
+                colonyHouseImage1.setImage(getBitMapData(R.drawable.colony_house0));
+                colonyHouseImage2.setImage(getBitMapData(R.drawable.colony_house1));
+                // Add Images to RealmList and set this RealmList for this performer
+                bandImages.add(colonyHouseImage1);
+                bandImages.add(colonyHouseImage2);
+                colonyHouse.setPictures(bandImages);
                 woolys.setVenueName("Wooly's");
                 colonyHouseWoolys.setId("colonyHouse102918");
                 colonyHouseWoolys.setPerformer(colonyHouse);
@@ -133,11 +144,20 @@ public class MainActivity extends AppCompatActivity {
 
                 Event johnathanDavisWoolys = new Event();
                 Band johnathanDavis = new Band();
-                johnathanDavis.setName("Johnathan Davis");
+                johnathanDavis.setName("Jonathan Davis");
                 johnathanDavis.setGenre("Metal");
                 johnathanDavis.setDescription("None available");
                 johnathanDavis.setReviews(bandReviews);
                 johnathanDavis.setUser_rating(4);
+                // Set Images for this performer
+                Image johnathanDavisImage1 = new Image();
+                Image johnathanDavisImage2 = new Image();
+                johnathanDavisImage1.setImage(getBitMapData(R.drawable.jonathan_davis0));
+                johnathanDavisImage2.setImage(getBitMapData(R.drawable.jonathan_davis1));
+                // Add Images to RealmList and set this RealmList for this performer
+                bandImages.add(johnathanDavisImage1);
+                bandImages.add(johnathanDavisImage2);
+                johnathanDavis.setPictures(bandImages);
                 johnathanDavisWoolys.setId("johnathanDavis102018");
                 johnathanDavisWoolys.setPerformer(johnathanDavis);
                 johnathanDavisWoolys.setVenue(woolys);
@@ -155,6 +175,15 @@ public class MainActivity extends AppCompatActivity {
                 nedLedoux.setDescription("In country music, a last name like LeDoux casts a big, storied and bittersweet shadow, but it’s one Ned LeDoux doesn’t mind standing in one bit. Having been a drummer in his dad Chris’ band Western Underground since 1998, Ned knew from an early age that he had “no plan b” but to play music, “Once I got the taste of the road, and being in front of a crowd and just the sound of it, it was...freedom.” The timing couldn’t be more right for Ned to pick up a guitar and belt out “Western Skies;” it has been over 10 years since Chris LeDoux passed and he believes people want to hear something new. Ned has boxes of song ideas his dad never finished and is digging through those for inspiration, “I will kind of stick with what dad used to do but bring my own stuff to the table.” In July of 2015, Ned traveled to Nashville with some of those unfinished songs and met up with Mac McAnally to put that inspiration to work. Mac produced Chris’ last two studio records and wrote his hit “Horsepower,” so the collaboration with Ned was a natural fit and lead to the first new Chris LeDoux co-write in nearly two decades.");
                 nedLedoux.setReviews(bandReviews);
                 nedLedoux.setUser_rating(5);
+                // Set Images for this performer
+                Image nedLedouxImage1 = new Image();
+                Image nedLedouxImage2 = new Image();
+                nedLedouxImage1.setImage(getBitMapData(R.drawable.ned_ledoux0));
+                nedLedouxImage2.setImage(getBitMapData(R.drawable.ned_ledoux1));
+                // Add Images to RealmList and set this RealmList for this performer
+                bandImages.add(nedLedouxImage1);
+                bandImages.add(nedLedouxImage2);
+                nedLedoux.setPictures(bandImages);
                 nedLedouxWoolys.setId("nedLedoux110118");
                 nedLedouxWoolys.setPerformer(nedLedoux);
                 nedLedouxWoolys.setVenue(woolys);
@@ -172,6 +201,15 @@ public class MainActivity extends AppCompatActivity {
                 suicideGirls.setDescription("SuicideGirls: Blackheart Burlesque is the sexiest, smartest, geekiest, and most fun definitive pop-culture burlesque show! Featuring none other than SuicideGirls themselves, the show has been performed hundreds of times, delighted millions of fans in over six countries, and has been touring since 2003! Don’t miss your chance to see it live during the 2018 US Tour! SuicideGirls has been redefining beauty since 2001 with its network of over 3,000 SuicideGirls and almost 9 million pinup-style photographs on the premier, members-only social network SuicideGirls.com. Check out blackheartburlesque.com for more information about the tour and to see where the girls are headed next!");
                 suicideGirls.setReviews(bandReviews);
                 suicideGirls.setUser_rating(4);
+                // Set Images for this performer
+                Image suicideGirlsImage1 = new Image();
+                Image suicideGirlsImage2 = new Image();
+                suicideGirlsImage1.setImage(getBitMapData(R.drawable.suicide_girls0));
+                suicideGirlsImage2.setImage(getBitMapData(R.drawable.suicide_girls1));
+                // Add Images to RealmList and set this RealmList for this performer
+                bandImages.add(suicideGirlsImage1);
+                bandImages.add(suicideGirlsImage2);
+                suicideGirls.setPictures(bandImages);
                 suicideGirlsWoolys.setId("suicideGirls110218");
                 suicideGirlsWoolys.setPerformer(suicideGirls);
                 suicideGirlsWoolys.setVenue(woolys);
@@ -190,13 +228,13 @@ public class MainActivity extends AppCompatActivity {
                 bandPerry.setReviews(bandReviews);
                 bandPerry.setUser_rating(5);
                 // Set Images for this performer
-                Image BandPerryImage1 = new Image();
-                Image BandPerryImage2 = new Image();
-                BandPerryImage1.setImage(getBitMapData(R.drawable.band_perry0,600,338));
-                BandPerryImage2.setImage(getBitMapData(R.drawable.band_perry1,600,338));
+                Image bandPerryImage1 = new Image();
+                Image bandPerryImage2 = new Image();
+                bandPerryImage1.setImage(getBitMapData(R.drawable.band_perry0));
+                bandPerryImage2.setImage(getBitMapData(R.drawable.band_perry1));
                 // Add Images to RealmList and set this RealmList for this performer
-                bandImages.add(BandPerryImage1);
-                bandImages.add(BandPerryImage2);
+                bandImages.add(bandPerryImage1);
+                bandImages.add(bandPerryImage2);
                 bandPerry.setPictures(bandImages);
                 bandPerryWoolys.setId("bandPerry110318");
                 bandPerryWoolys.setPerformer(bandPerry);
@@ -215,6 +253,15 @@ public class MainActivity extends AppCompatActivity {
                 gregoryIsakov.setDescription("Born in Johannesburg, South Africa, and calling Colorado home, Gregory Alan Isakov has been traveling all his life. Songs that hone a masterful quality tell a story of miles and landscapes, and the search for a sense of place. His song-craft lends to deep lyrical masterpieces, with hints of his influences, Leonard Cohen and Bruce Springsteen. He has been described as “strong, subtle, a lyrical genius.” Isakov will be releasing a new album, Evening Machines, on October 5th, 2018.");
                 gregoryIsakov.setReviews(bandReviews);
                 gregoryIsakov.setUser_rating(4);
+                // Set Images for this performer
+                Image gregoryIsakovImage1 = new Image();
+                Image gregoryIsakovImage2 = new Image();
+                gregoryIsakovImage1.setImage(getBitMapData(R.drawable.gregory_isakov0));
+                gregoryIsakovImage2.setImage(getBitMapData(R.drawable.gregory_isakov1));
+                // Add Images to RealmList and set this RealmList for this performer
+                bandImages.add(gregoryIsakovImage1);
+                bandImages.add(gregoryIsakovImage2);
+                gregoryIsakov.setPictures(bandImages);
                 gregoryIsakovWoolys.setId("gregoryIsakov110418");
                 gregoryIsakovWoolys.setPerformer(gregoryIsakov);
                 gregoryIsakovWoolys.setVenue(woolys);
@@ -229,8 +276,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Resize images and convert to byte[]
-    public byte[] getBitMapData(int image, int newWidth, int newHeight){
+    // Convert image to byte[]
+    public byte[] getBitMapData(int image){
 
         // Source for getting bitMap from drawable: Drawable to byte[]
         // https://stackoverflow.com/questions/4435806/drawable-to-byte
@@ -242,10 +289,11 @@ public class MainActivity extends AppCompatActivity {
         // https://stackoverflow.com/questions/7021578/resize-drawable-in-android
         // user: craned
         // date: May 9, 2014
-        Bitmap bitMapScaled = Bitmap.createScaledBitmap(bitMap, newWidth, newHeight, true);
+        // Not currently using the following line of code.
+//        Bitmap bitMapScaled = Bitmap.createScaledBitmap(bitMap, newWidth, newHeight, true);
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitMapScaled.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bitMap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] bitMapData = stream.toByteArray();
 
         return bitMapData;
