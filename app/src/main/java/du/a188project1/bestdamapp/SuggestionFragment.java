@@ -20,7 +20,6 @@ import io.realm.RealmList;
 import io.realm.RealmResults;
 
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -43,10 +42,11 @@ public class SuggestionFragment extends Fragment {
 
         Realm realm = Realm.getDefaultInstance();
 
-        final RealmResults<User> userPref = realm.where(User.class).findAll();
+        String current_email = getActivity().getIntent().getStringExtra("current_email");
+        User user =  realm.where(User.class).equalTo("email",current_email).findFirst();
         final RealmResults<Event> allEventRealm = realm.where(Event.class).findAll();
 
-        RealmList<String> genrePref = userPref.get(0).getGenre_list();
+        RealmList<String> genrePref = user.getGenre_list();
 
         RealmList<Event> suggestedEvents = new RealmList<Event>();
         for (String s: genrePref){

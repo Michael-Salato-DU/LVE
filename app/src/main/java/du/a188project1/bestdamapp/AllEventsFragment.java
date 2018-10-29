@@ -62,6 +62,7 @@ public class AllEventsFragment extends Fragment {
                 intent.putExtra("current_email", mainActivity.user.getEmail());
                 startActivity(intent);
             }
+
         };
 
 

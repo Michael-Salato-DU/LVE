@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 
+import com.spotify.android.appremote.api.SpotifyAppRemote;
+
 import java.util.ArrayList;
 
 import io.realm.Realm;
@@ -23,6 +25,9 @@ public class GenreSelection extends AppCompatActivity {
     private Button genreButton;
     private Button spotifyButton;
 
+    private static final String CLIENT_ID = "your_client_id";
+    private static final String REDIRECT_URI = "du.a188project1.bestdamapp://callback";
+    private SpotifyAppRemote mSpotifyAppRemote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +109,22 @@ public class GenreSelection extends AppCompatActivity {
                 startActivity(main_intent);
             }
         });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // We will start writing our code here.
+
+    }
+
+    private void connected() {
+        // Then we will write some more code here.
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // Aaand we will finish off here.
     }
 
 }
