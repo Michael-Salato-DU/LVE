@@ -1,5 +1,4 @@
 // Tess Julien
-// October 2, 2018
 //Venue class with getters and setters
 
 package du.a188project1.bestdamapp;

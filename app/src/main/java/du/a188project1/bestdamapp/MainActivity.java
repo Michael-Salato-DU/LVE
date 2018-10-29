@@ -1,6 +1,4 @@
 /*
-Tess Julien
-October 8, 2018
 Landing page of app with three tabs. Selecting a tab opens up a fragment.
  */
 package du.a188project1.bestdamapp;

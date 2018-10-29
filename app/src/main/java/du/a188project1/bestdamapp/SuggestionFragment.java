@@ -1,6 +1,4 @@
 /*
-Tess Julien
-October 8, 2018
 Fragment that will hold a list of suggested events
  */
 package du.a188project1.bestdamapp;
@@ -25,6 +23,7 @@ import io.realm.RealmResults;
  */
 public class SuggestionFragment extends Fragment {
 
+    //declare variables
     private RecyclerView suggestionList;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter suggestionAdapter;
@@ -42,12 +41,15 @@ public class SuggestionFragment extends Fragment {
 
         Realm realm = Realm.getDefaultInstance();
 
+        //get user
         String current_email = getActivity().getIntent().getStringExtra("current_email");
         User user =  realm.where(User.class).equalTo("email",current_email).findFirst();
         final RealmResults<Event> allEventRealm = realm.where(Event.class).findAll();
 
+        // get user's genre preferences
         RealmList<String> genrePref = user.getGenre_list();
 
+        // create list of suggested events based on user's genre list
         RealmList<Event> suggestedEvents = new RealmList<Event>();
         for (String s: genrePref){
             for (Event e: allEventRealm){
@@ -64,11 +66,13 @@ public class SuggestionFragment extends Fragment {
 
         final MainActivity mainActivity = (MainActivity) this.getActivity();
 
+        // open an event activity when an event is selected from the list
         RecyclerViewClickListener listener = new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Event event = (Event) suggestedEvents.get(position);
                 Intent intent = new Intent(view.getContext(), EventActivity.class);
+                // pass event and user data to event activity
                 intent.putExtra("event", event.getId());
                 intent.putExtra("current_email", mainActivity.user.getEmail());
                 startActivity(intent);

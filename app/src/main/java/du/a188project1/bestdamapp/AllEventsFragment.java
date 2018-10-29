@@ -1,6 +1,5 @@
 /*
 Tess Julien
-October 8, 2018
 Fragment that will hold a list of all future events
  */
 
@@ -26,6 +25,7 @@ import io.realm.RealmResults;
  */
 public class AllEventsFragment extends Fragment {
 
+    // declare variables
     private RecyclerView allEventsList;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter eventsAdapter;
@@ -41,23 +41,30 @@ public class AllEventsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_events, container, false);
 
+        //Establish Realm and find all events saved in Realm
         Realm realm = Realm.getDefaultInstance();
         final RealmResults<Event> allEventsRealm = realm.where(Event.class).findAll();
 
+        //Add all event objects found in Realm to a list to be displayed in the fragment
         RealmList<Event> allEvents = new RealmList<Event>();
         allEvents.addAll(allEventsRealm.subList(0, allEventsRealm.size()));
         allEventsList = (RecyclerView)view.findViewById(R.id.all_events_list);
 
+        //set up the layout manager
         layoutManager = new LinearLayoutManager(getContext());
         allEventsList.setLayoutManager(layoutManager);
 
+        //make a MainActivity variable that data will be pulled from and passed to the next activity
         final MainActivity mainActivity = (MainActivity) this.getActivity();
 
+        //clicking on an event in the list will open up an Event Activity
         RecyclerViewClickListener listener = new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
+                //determine which event is selected
                 Event event = (Event) allEvents.get(position);
                 Intent intent = new Intent(view.getContext(), EventActivity.class);
+                //pass event id and user id to the next activity
                 intent.putExtra("event", event.getId());
                 intent.putExtra("current_email", mainActivity.user.getEmail());
                 startActivity(intent);
@@ -66,7 +73,7 @@ public class AllEventsFragment extends Fragment {
         };
 
 
-
+        //set the adapter
         eventsAdapter = new EventListAdapter(getContext(), allEvents, listener);
         allEventsList.setAdapter(eventsAdapter);
 
