@@ -3,10 +3,10 @@
     package="du.a188project1.bestdamapp">
 
     <application
+        android:name=".BestDamApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".BestDamApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -20,13 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".RegisterActivity"
             android:label="@string/register_title"
-            android:theme="@style/BestDamTheme"
-            />
-
+            android:theme="@style/BestDamTheme" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/BestDamTheme">
@@ -36,7 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".GenreSelection"
             android:label="@string/title_activity_Genre_selection"
@@ -47,17 +43,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
         <activity
             android:name=".EventActivity"
             android:label="@string/title_activity_event"
-            android:theme="@style/BestDamThemeNoToolbar">
-        </activity>
-
-
-
+            android:theme="@style/BestDamThemeNoToolbar"></activity>
+        <activity android:name=".ReviewActivity"></activity>
     </application>
 
 </manifest>

@@ -5,8 +5,10 @@ package du.a188project1.bestdamapp;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Band extends RealmObject{
+    @PrimaryKey
     private String name;
     private String genre;
     private String description;
