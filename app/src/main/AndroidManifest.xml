@@ -45,7 +45,6 @@
         </activity>
         <activity
             android:name=".EventActivity"
-            android:label="@string/title_activity_event"
             android:theme="@style/BestDamThemeNoToolbar"></activity>
         <activity android:name=".ReviewActivity"></activity>
     </application>
