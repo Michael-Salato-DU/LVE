@@ -27,6 +27,7 @@ import io.realm.RealmList;
  */
 public class SavedEventsFragment extends Fragment {
 
+    //declare variables
     private RecyclerView savedEventsList;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter eventsAdapter;
@@ -42,8 +43,10 @@ public class SavedEventsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_saved_events, container, false);
 
+        // create MainActivity instance
         final MainActivity mainActivity = (MainActivity) this.getActivity();
 
+        // get list of events from the user and use it to populate the display
         RealmList<Event> savedEvents = mainActivity.user.getSaved_events();
         savedEventsList = (RecyclerView)view.findViewById(R.id.saved_events_list);
 
@@ -54,22 +57,26 @@ public class SavedEventsFragment extends Fragment {
         return view;
     }
 
+    // refresh list when user comes back to the fragment
     @Override
     public void onResume(){
         super.onResume();
         refreshList();
     }
 
+    //function to make sure list is up to date
     private void refreshList(){
         Realm realm = Realm.getDefaultInstance();
         MainActivity activity = (MainActivity) this.getActivity();
         final RealmList<Event> savedEvents = activity.user.getSaved_events();
         final MainActivity mainActivity = (MainActivity) this.getActivity();
         RecyclerViewClickListener listener = new RecyclerViewClickListener() {
+            // open an event activity for the event selected from the list
             @Override
             public void onClick(View view, int position) {
                 Event event = (Event) savedEvents.get(position);
                 Intent intent = new Intent(view.getContext(), EventActivity.class);
+                // pass event and user data to the event activity
                 intent.putExtra("event", event.getId());
                 intent.putExtra("current_email", mainActivity.user.getEmail());
                 startActivity(intent);

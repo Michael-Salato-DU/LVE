@@ -1,5 +1,6 @@
-/* Review class with getters and setters
-
+/*
+Tess Julien
+Review class with getters and setters
  */
 
 package du.a188project1.bestdamapp;

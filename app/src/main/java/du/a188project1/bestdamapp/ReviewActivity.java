@@ -1,3 +1,7 @@
+/*
+Tess Julien
+An activity in which a user writes a review
+ */
 package du.a188project1.bestdamapp;
 
 import android.content.Intent;
@@ -21,6 +25,7 @@ import io.realm.RealmList;
 
 public class ReviewActivity extends AppCompatActivity {
 
+    //declare variables
     private ImageView bandImage;
     private TextView bandName;
     private EditText reviewMessage;
@@ -35,6 +40,7 @@ public class ReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
+        //set variables to views from layout
         bandImage = (ImageView) findViewById(R.id.band_image);
         bandName = (TextView) findViewById(R.id.band_name);
         reviewMessage = (EditText) findViewById(R.id.review_message);
@@ -42,10 +48,12 @@ public class ReviewActivity extends AppCompatActivity {
         saveButton = (Button) findViewById(R.id.save_button);
         realm = Realm.getDefaultInstance();
 
+        //set band name based on data passed from the EventActivity
         String performer = (String) getIntent().getStringExtra("band");
         band = realm.where(Band.class).equalTo("name", performer).findFirst();
         bandName.setText(band.getName());
 
+        //if view for the band image is clicked, open the camera
         bandImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +64,7 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
 
+        // save review to realm and add it to a band's list of reviews when the save button is clicked
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +72,7 @@ public class ReviewActivity extends AppCompatActivity {
                     realm.executeTransaction(new Realm.Transaction() {
                         @Override
                         public void execute(Realm realm) {
+                            // create review object and fill its fields
                             Review review = new Review();
                             String currentEmail = (String) getIntent().getStringExtra("user email");
                             user = realm.where(User.class).equalTo("email", currentEmail).findFirst();
@@ -78,10 +88,15 @@ public class ReviewActivity extends AppCompatActivity {
                             review.setRating(reviewRating.getInputType());
 
 
+                            //save review to realm
                             realm.copyToRealm(review);
+                            // get list currently saved to the band
                             RealmList<Review> updatedList = band.getReviews();
+                            // add the new review to the band's list of reviews
                             updatedList.add(review);
+                            // reset the band's list of reviews to the new list
                             band.setReviews(updatedList);
+                            // update the band object in realm
                             realm.copyToRealmOrUpdate(band);
                             finish();
 
