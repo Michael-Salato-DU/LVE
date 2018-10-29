@@ -66,6 +66,8 @@ public class AllEventsFragment extends Fragment {
             }
         };
 
+
+
         eventsAdapter = new EventListAdapter(getContext(), allEvents, listener);
         allEventsList.setAdapter(eventsAdapter);
 

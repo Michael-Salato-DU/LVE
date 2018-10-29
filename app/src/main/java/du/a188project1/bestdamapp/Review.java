@@ -7,6 +7,7 @@ public class Review extends RealmObject{
     @PrimaryKey
     private String id;
     private User user;
+    private Band band;
     private String message;
     private float rating;
     private byte[] image;
@@ -25,6 +26,14 @@ public class Review extends RealmObject{
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Band getBand() {
+        return band;
+    }
+
+    public void setBand(Band band) {
+        this.band = band;
     }
 
     public String getMessage() {
