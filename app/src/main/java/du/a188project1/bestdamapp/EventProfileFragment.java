@@ -80,9 +80,15 @@ public class EventProfileFragment extends Fragment {
         bandNameView.setText(eventActivity.event.getPerformer().getName());
         venueView.setText(eventActivity.event.getVenue().getVenueName());
         genreView.setText(eventActivity.event.getPerformer().getGenre());
-        // priceView displays as a range (i.e. $25 - $50 per ticket)
-        priceView.setText("$"+Integer.toString(eventActivity.event.getMinPrice())+ " - $" +
-                Integer.toString(eventActivity.event.getMaxPrice()) + " per ticket");
+
+        if ((eventActivity.event.getMinPrice() == 0) && (eventActivity.event.getMaxPrice() == 0)) {
+            priceView.setText("SOLD OUT!");
+        }
+        else {
+            // priceView displays as a range (i.e. $25 - $50 per ticket)
+            priceView.setText("$"+Integer.toString(eventActivity.event.getMinPrice())+ " - $" +
+                    Integer.toString(eventActivity.event.getMaxPrice()) + " per ticket");
+        }
 
         // Link to the official website to buy the tickets.
         // source to link to a website: How to open a website when a Button is clicked in Android application?

@@ -3,7 +3,6 @@ package du.a188project1.bestdamapp;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +53,6 @@ public class GenreSelectionAdapter extends RecyclerView.Adapter<GenreSelectionAd
         View v = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.genre_cell, parent, false);
         GenreViewHolder vh = new GenreViewHolder(v,cListener);
-        Log.v("loop?", "Yes");
         return vh;
     }
 
