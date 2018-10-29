@@ -1,6 +1,7 @@
 package du.a188project1.bestdamapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -76,6 +77,19 @@ public class GenreSelection extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                //link to spotify website
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.spotify.com/en/login"));
+                startActivity(intent);
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
         genreList.setAdapter(adapter);
