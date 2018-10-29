@@ -68,21 +68,23 @@
 
             <Button
                 android:id="@+id/sign_in_button"
-                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in_short"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                style="@style/Widget.AppCompat.Button.Colored"
+                />
 
             <Button
                 android:id="@+id/register_button"
-                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/register_short"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                style="@style/Widget.AppCompat.Button.Colored"
+                />
 
         </LinearLayout>
     </ScrollView>

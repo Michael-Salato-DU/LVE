@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,8 @@ import android.widget.TextView;
 
 import io.realm.Realm;
 import io.realm.RealmList;
+
+import static android.support.design.widget.Snackbar.LENGTH_SHORT;
 
 
 /**
@@ -57,6 +60,8 @@ public class EventProfileFragment extends Fragment {
         priceView = (TextView) view.findViewById(R.id.price_view);
         followButton = (Button) view.findViewById(R.id.follow_button);
         buyTicketsButton = (Button) view.findViewById(R.id.buy_tickets_button);
+        Snackbar followed_message = (Snackbar)Snackbar.make(
+                view.findViewById(R.id.event_coordinator_layout), "Band followed!", LENGTH_SHORT);
 
         // Get a realm instance
         realm = Realm.getDefaultInstance();
@@ -108,6 +113,8 @@ public class EventProfileFragment extends Fragment {
                             eventActivity.user.setSaved_events(updatedList);
                             // Update in realm database
                             realm.copyToRealmOrUpdate(eventActivity.user);
+                            // Notification snackbar indicating the band is followed
+                            followed_message.show();
                     }
                 });
 
