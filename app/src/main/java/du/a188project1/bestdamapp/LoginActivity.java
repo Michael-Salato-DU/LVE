@@ -21,6 +21,8 @@ import io.realm.RealmResults;
 public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Set Title
+        super.setTitle(R.string.title_activity_login);
         Realm realm = Realm.getDefaultInstance();
         final RealmResults<User> users = realm.where(User.class).findAll();
         if(users.size() == 0) {
