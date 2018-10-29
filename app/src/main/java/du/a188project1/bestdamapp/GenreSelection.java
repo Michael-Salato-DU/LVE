@@ -17,22 +17,25 @@ import io.realm.RealmList;
 
 public class GenreSelection extends AppCompatActivity {
     //Declare
-
     public User user;
     private RecyclerView genreList;
     private RecyclerView.LayoutManager layoutManager;
     private Button genreButton;
+    private Button spotifyButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_genre_selection);
         RealmList<String> selectedGenre = new RealmList<String>();
+        ArrayList<String> spotify_list = new ArrayList<String>();
 
         genreList = (RecyclerView) findViewById(R.id.genre_list);
         layoutManager = new LinearLayoutManager(getBaseContext());
         genreList.setLayoutManager(layoutManager);
         genreButton = (Button) findViewById(R.id.genre_button);
+        spotifyButton = (Button) findViewById(R.id.spotify_button);
 
         //Create a list of genres to fill in text in checkboxes
         ArrayList<String> Genres = new ArrayList<String>();
@@ -63,10 +66,18 @@ public class GenreSelection extends AppCompatActivity {
                     selectedGenre.remove(compoundButton.getText().toString());
                 }
             }
+
+
         };
 
         //Create adapter that will update adapter dataset with Genres and attach listener to ViewHolder
         final GenreSelectionAdapter adapter = new GenreSelectionAdapter(getBaseContext(), Genres, listener);
+        spotifyButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+            }
+        });
         genreList.setAdapter(adapter);
 
         //Button that submits selected genres and switch to MainActivity

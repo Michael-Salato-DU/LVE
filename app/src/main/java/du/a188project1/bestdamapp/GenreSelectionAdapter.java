@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
@@ -31,6 +32,7 @@ public class GenreSelectionAdapter extends RecyclerView.Adapter<GenreSelectionAd
         public CheckBox genreChkBox;
         //Checkbox listener
         private CompoundButton.OnCheckedChangeListener cListener;
+        public Button spotifyButton;
 
         //Constructor for the GenreViewHolder class
         public GenreViewHolder(View itemView, CompoundButton.OnCheckedChangeListener listener) {
@@ -38,6 +40,7 @@ public class GenreSelectionAdapter extends RecyclerView.Adapter<GenreSelectionAd
             genreChkBox = itemView.findViewById(R.id.genre_type);
             cListener = listener;
             genreChkBox.setOnCheckedChangeListener(listener);
+
         }
 
     }
@@ -51,6 +54,7 @@ public class GenreSelectionAdapter extends RecyclerView.Adapter<GenreSelectionAd
         View v = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.genre_cell, parent, false);
         GenreViewHolder vh = new GenreViewHolder(v,cListener);
+        Log.v("loop?", "Yes");
         return vh;
     }
 

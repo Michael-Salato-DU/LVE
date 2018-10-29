@@ -1,0 +1,22 @@
+review_image0.jpg: https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/03/03103805/big-concert-audience-listening-to-music-at-festival-picture-id485343244.jpg
+review_image1.jpg: https://cdn1.medicalnewstoday.com/content/images/articles/321/321093/band-and-crowd-at-concert.jpg
+review_image2.jpg: https://cdn.londonandpartners.com/visit/london-organisations/alexandra-palace/92923-640x360-alexandra-palace-gig-640.jpg
+
+colony_house0.jpg: https://cdn.baeblemusic.com/bandcontent/colony_house/colony_still_2_web-592.jpg
+colony_house1.jpg: https://www.billboard.com/files/styles/article_main_image/public/media/colony-house-press-photo-cr-Eric-Ryan-Anderson-2017-billboard-1548.jpg
+
+jonathan_davis0.jpg: https://www.billboard.com/files/styles/article_main_image/public/media/Jonathan-Davis-of-Korn-2017-reading-fest-billboard-1548.jpg
+jonathan_davis1.jpg: https://www.overdrive.ie/wp-content/uploads/2018/01/jonathan-davis-2018-solo.jpg
+
+ned_ledoux0.jpg: https://i.ytimg.com/vi/tsCj5iaBPIA/maxresdefault.jpg
+ned_ledoux1.jpg: https://www.savingcountrymusic.com/wp-content/uploads/2016/12/ned-ledoux.jpg
+
+suicide_girls0.jpg: https://c1.staticflickr.com/8/7235/7346890480_47177b14b4.jpg
+suicide_girls1.jpg: http://ladyl411.com/wp-content/uploads/2017/06/20170615_1943051.jpg
+
+band_perry0.jpg: https://www.billboard.com/files/styles/article_main_image/public/media/the-band-perry-today-show-april-2016-billboard-650.jpg
+band_perry1.jpg: https://cdn0.wideopencountry.com/wp-content/uploads/2016/03/The-Band-Perry-Feature-Image-793x526.jpg
+
+gregory_isakov0.jpg: https://s3.amazonaws.com/media.car/19813_img_9568p.JPG
+gregory_isakov1.jpg: https://hips.hearstapps.com/esq.h-cdn.co/assets/cm/15/06/54cfd3a6e6412_-_esq-gregory-alan-isakov-lgn.jpg
+

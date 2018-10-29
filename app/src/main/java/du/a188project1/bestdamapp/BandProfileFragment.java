@@ -1,5 +1,6 @@
 /* Michael Salato
-   Fragment that will show information about the band in the selected event.
+   "Band Profile" tab. Fragment that will show information about the band
+   in the selected event.
  */
 
 package du.a188project1.bestdamapp;
@@ -9,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +48,10 @@ public class BandProfileFragment extends Fragment {
         userRatingView = (TextView) view.findViewById(R.id.user_rating_view);
         bandDescriptionView = (TextView) view.findViewById(R.id.band_description_view);
 
+        // Declare an EventActivity variable
         final EventActivity eventActivity = (EventActivity) this.getActivity();
 
-        // set the image
+        // Set an image of the band
         if(eventActivity.event.getPerformer().getPictures().size() != 0) {
             Bitmap bmp = BitmapFactory.decodeByteArray(eventActivity.event.getPerformer().getPictures().get(1).getImage(),
                     0, eventActivity.event.getPerformer().getPictures().get(1).getImage().length);
@@ -57,6 +60,13 @@ public class BandProfileFragment extends Fragment {
 
         // Set the band name and band description textViews.
         bandNameView.setText(eventActivity.event.getPerformer().getName());
+
+        // Source for setMovementMethod to create a scrollable textView: How to Make Scrollable TextView in Android
+        // Also added android:scrollbars="vertical" in fragment_band_profile.xml
+        // https://www.viralandroid.com/2015/10/how-to-make-scrollable-textview-in-android.html
+        // author: Pacific Regmi
+        // date: April 4, 2018
+        bandDescriptionView.setMovementMethod(new ScrollingMovementMethod());
         bandDescriptionView.setText(eventActivity.event.getPerformer().getDescription());
 
         // get the user rating for this performer
